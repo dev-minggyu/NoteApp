@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
-class MainProcessor : BaseProcessor<MainContract.Event, MainContract.Mutation>() {
-    override fun process(event: MainContract.Event): Flow<MainContract.Mutation> {
+class MainProcessor : BaseProcessor<MainContract.Action, MainContract.Mutation>() {
+    override fun process(event: MainContract.Action): Flow<MainContract.Mutation> {
         return when (event) {
-            MainContract.Event.LoadData -> flow {
+            MainContract.Action.LoadData -> flow {
                 emit(MainContract.Mutation.ShowLoader)
                 delay(500) // mock network
                 runCatching {
@@ -21,7 +21,7 @@ class MainProcessor : BaseProcessor<MainContract.Event, MainContract.Mutation>()
                 }
             }
 
-            is MainContract.Event.ClickItem -> {
+            is MainContract.Action.ClickItem -> {
                 flowOf(MainContract.Mutation.ItemClicked(event.id))
             }
         }

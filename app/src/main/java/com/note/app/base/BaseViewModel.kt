@@ -2,8 +2,8 @@ package com.note.app.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.note.app.base.contract.UiEffect
 import com.note.app.base.contract.UiEvent
+import com.note.app.base.contract.UiAction
 import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 import kotlinx.coroutines.channels.Channel
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<Event : UiEvent, Mutation : UiMutation, State : UiState, Effect : UiEffect>(
+abstract class BaseViewModel<Event : UiAction, Mutation : UiMutation, State : UiState, Effect : UiEvent>(
     private val processor: BaseProcessor<Event, Mutation>,
     private val reducer: BaseReducer<Mutation, State, Effect>,
 ) : ViewModel() {

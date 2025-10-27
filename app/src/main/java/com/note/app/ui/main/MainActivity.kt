@@ -8,7 +8,7 @@ import com.note.app.base.BaseActivity
 import com.note.app.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity :
-    BaseActivity<ActivityMainBinding, MainContract.Event, MainContract.Mutation, MainContract.State, MainContract.Effect, MainViewModel>() {
+    BaseActivity<ActivityMainBinding, MainContract.Action, MainContract.Mutation, MainContract.State, MainContract.Event, MainViewModel>() {
     override val viewModel: MainViewModel by viewModel()
 
     override fun inflateViewBinding(): ActivityMainBinding {
@@ -20,9 +20,9 @@ class MainActivity :
     }
 
     override fun initView() {
-        binding.btnLoadData.setOnClickListener { sendEvent(MainContract.Event.LoadData) }
+        binding.btnLoadData.setOnClickListener { sendEvent(MainContract.Action.LoadData) }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = MainAdapter { id -> sendEvent(MainContract.Event.ClickItem(id)) }
+        binding.recyclerView.adapter = MainAdapter { id -> sendEvent(MainContract.Action.ClickItem(id)) }
     }
 
     override fun renderState(state: MainContract.State) {
@@ -33,13 +33,13 @@ class MainActivity :
         }
     }
 
-    override fun handleEffect(effect: MainContract.Effect) {
+    override fun handleEffect(effect: MainContract.Event) {
         when (effect) {
-            is MainContract.Effect.ShowToast -> {
+            is MainContract.Event.ShowToast -> {
                 Toast.makeText(this, effect.message, Toast.LENGTH_SHORT).show()
             }
 
-            is MainContract.Effect.NavigateToDetail -> {
+            is MainContract.Event.NavigateToDetail -> {
                 Toast.makeText(this, "상세 화면으로 이동: ${effect.id}", Toast.LENGTH_SHORT).show()
             }
         }
