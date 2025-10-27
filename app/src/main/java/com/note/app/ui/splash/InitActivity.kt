@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.note.app.base.BaseActivity
 import com.note.app.databinding.ActivityInitBinding
 import com.note.app.ui.main.MainActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class InitActivity : BaseActivity<ActivityInitBinding, InitContract.Action, InitContract.Mutation, InitContract.State, InitContract.Event, InitViewModel>() {
+class InitActivity :
+    BaseActivity<ActivityInitBinding, InitContract.Action, InitContract.Mutation, InitContract.State, InitContract.Event, InitViewModel>() {
 
-    override val viewModel: InitViewModel by viewModels()
+    override val viewModel: InitViewModel by viewModel()
 
     private var isReady = false
 
