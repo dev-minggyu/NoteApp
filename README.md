@@ -1,6 +1,7 @@
-# MyTemplate - Clean Architecture
+# NoteApp
 
-신규 프로젝트에 사용할 Clean Architecture 템플릿.
+NoteApp for Studying Architecture, Jetpack Compose, more..
+
 
 # Architecture
 
