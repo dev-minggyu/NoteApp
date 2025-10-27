@@ -10,8 +10,8 @@ internal fun Project.configureAndroidHilt() {
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     with(pluginManager) {
-        apply("com.google.devtools.ksp")
-        apply("dagger.hilt.android.plugin")
+        apply(libs.findPlugin("kotlin.ksp").get().get().pluginId)
+        apply(libs.findPlugin("hilt").get().get().pluginId)
     }
 
     dependencies {

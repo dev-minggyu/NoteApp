@@ -12,5 +12,6 @@ internal fun Project.configureAndroidKoin() {
     dependencies {
         implementation(libs.findLibrary("koin.core").get())
         implementation(libs.findLibrary("koin.android").get())
+        implementation(libs.findLibrary("koin.androidx.compose").get())
     }
 }

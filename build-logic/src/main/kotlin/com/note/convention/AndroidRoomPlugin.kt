@@ -12,7 +12,7 @@ internal class AndroidRoomPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             with(pluginManager) {
-                apply("com.google.devtools.ksp")
+                apply(libs.findPlugin("kotlin.ksp").get().get().pluginId)
             }
 
             dependencies {
