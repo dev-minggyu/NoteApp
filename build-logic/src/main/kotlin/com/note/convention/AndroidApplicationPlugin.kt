@@ -16,10 +16,13 @@ fun Project.configureAndroidApplication() {
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     with(pluginManager) {
-        apply("org.jetbrains.kotlin.android")
-        apply("kotlinx-serialization")
-        apply("kotlin-parcelize")
+        apply(libs.findPlugin("kotlin.android").get().get().pluginId)
+        apply(libs.findPlugin("kotlin.serialization").get().get().pluginId)
+        apply(libs.findPlugin("kotlin.parcelize").get().get().pluginId)
+        apply(libs.findPlugin("compose.compiler").get().get().pluginId)
     }
+
+    //libs.findPlugin("compose.compiler").get())
 
     android {
         compileSdkVersion(Versions.COMPILE_SDK)
