@@ -11,7 +11,7 @@ import com.note.app.base.BaseActivity
 import com.note.app.databinding.ActivityInitBinding
 import com.note.app.ui.main.MainActivity
 
-class InitActivity : BaseActivity<ActivityInitBinding, InitContract.Event, InitContract.Mutation, InitContract.State, InitContract.Effect, InitViewModel>() {
+class InitActivity : BaseActivity<ActivityInitBinding, InitContract.Action, InitContract.Mutation, InitContract.State, InitContract.Event, InitViewModel>() {
 
     override val viewModel: InitViewModel by viewModels()
 
@@ -38,13 +38,13 @@ class InitActivity : BaseActivity<ActivityInitBinding, InitContract.Event, InitC
         }
     }
 
-    override fun handleEffect(effect: InitContract.Effect) {
+    override fun handleEffect(effect: InitContract.Event) {
         when (effect) {
-            is InitContract.Effect.NavigateToMain -> {
+            is InitContract.Event.NavigateToMain -> {
                 navigateToMain()
             }
 
-            is InitContract.Effect.ShowError -> {
+            is InitContract.Event.ShowError -> {
                 Toast.makeText(this, effect.message, Toast.LENGTH_SHORT).show()
             }
         }

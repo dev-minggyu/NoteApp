@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.onSubscription
 class MainViewModel(
     private val processor: MainProcessor,
     private val reducer: MainReducer
-) : BaseViewModel<MainContract.Event, MainContract.Mutation, MainContract.State, MainContract.Effect>(
+) : BaseViewModel<MainContract.Action, MainContract.Mutation, MainContract.State, MainContract.Event>(
     processor = processor,
     reducer = reducer
 ) {
     override val uiState: StateFlow<MainContract.State> = uiEvent
-        .onSubscription { sendEvent(MainContract.Event.LoadData) }
+        .onSubscription { sendEvent(MainContract.Action.LoadData) }
         .reduceToState(
             processor = ::processEvent,
             reducer = ::reduceMutation,

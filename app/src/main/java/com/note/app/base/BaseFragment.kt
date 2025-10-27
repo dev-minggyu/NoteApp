@@ -9,13 +9,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
-import com.note.app.base.contract.UiEffect
 import com.note.app.base.contract.UiEvent
+import com.note.app.base.contract.UiAction
 import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<T : ViewBinding, Event : UiEvent, Mutation : UiMutation, State : UiState, Effect : UiEffect, VM : BaseViewModel<Event, Mutation, State, Effect>> : Fragment() {
+abstract class BaseFragment<T : ViewBinding, Event : UiAction, Mutation : UiMutation, State : UiState, Effect : UiEvent, VM : BaseViewModel<Event, Mutation, State, Effect>> : Fragment() {
     private var _binding: T? = null
     val binding get() = _binding!!
 

@@ -1,14 +1,14 @@
 package com.note.app.ui.main
 
-import com.note.app.base.contract.UiEffect
 import com.note.app.base.contract.UiEvent
+import com.note.app.base.contract.UiAction
 import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 
 class MainContract {
-    sealed interface Event : UiEvent {
-        data object LoadData : Event
-        data class ClickItem(val id: String) : Event
+    sealed interface Action : UiAction {
+        data object LoadData : Action
+        data class ClickItem(val id: String) : Action
     }
 
     data class State(
@@ -17,9 +17,9 @@ class MainContract {
         val error: String? = null
     ) : UiState
 
-    sealed interface Effect : UiEffect {
-        data class ShowToast(val message: String) : Effect
-        data class NavigateToDetail(val id: String) : Effect
+    sealed interface Event : UiEvent {
+        data class ShowToast(val message: String) : Event
+        data class NavigateToDetail(val id: String) : Event
     }
 
     sealed interface Mutation : UiMutation {
