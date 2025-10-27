@@ -14,11 +14,3 @@ internal fun Project.configureAndroidKoin() {
         implementation(libs.findLibrary("koin.android").get())
     }
 }
-
-internal class AndroidKoinPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            configureAndroidKoin()
-        }
-    }
-}

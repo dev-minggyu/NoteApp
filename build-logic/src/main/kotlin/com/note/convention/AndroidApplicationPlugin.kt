@@ -41,6 +41,8 @@ fun Project.configureAndroidApplication() {
             }
         }
 
+        buildFeatures.compose = true
+
         dependencies {
             coreLibraryDesugaring(libs.findLibrary("android.desugar.jdk").get())
 
