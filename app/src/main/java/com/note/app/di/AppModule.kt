@@ -6,7 +6,7 @@ import com.note.app.ui.main.MainViewModel
 import com.note.app.ui.splash.InitProcessor
 import com.note.app.ui.splash.InitReducer
 import com.note.app.ui.splash.InitViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
