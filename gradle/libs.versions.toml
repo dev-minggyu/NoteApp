@@ -26,7 +26,7 @@ androidx-navigation-ui = "2.8.1"
 material = "1.6.1"
 
 # Compose
-compose-bom = "2024.05.00-alpha03"
+compose-bom = "2025.10.00"
 
 # Hilt
 hilt = "2.51.1"
@@ -90,7 +90,7 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
 
 # Compose
-compose-bom = { module = "dev.chrisbanes.compose:compose-bom", version.ref = "compose-bom" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material = { module = "androidx.compose.material:material" }
 
