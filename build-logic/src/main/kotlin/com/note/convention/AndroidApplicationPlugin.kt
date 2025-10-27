@@ -43,9 +43,15 @@ fun Project.configureAndroidApplication() {
 
         dependencies {
             coreLibraryDesugaring(libs.findLibrary("android.desugar.jdk").get())
+
             implementation(libs.findLibrary("kotlin.coroutines.core").get())
             implementation(libs.findLibrary("kotlin.coroutines.android").get())
             implementation(libs.findLibrary("kotlin.serialization").get())
+
+            implementation(libs.findLibrary("compose.bom").get())
+            implementation(libs.findLibrary("compose.foundation").get())
+            implementation(libs.findLibrary("compose.material").get())
+
             implementation(libs.findLibrary("test.junit").get())
             implementation(libs.findLibrary("test.junit.extension").get())
             implementation(libs.findLibrary("test.esspresso.core").get())
