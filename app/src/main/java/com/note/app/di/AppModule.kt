@@ -12,7 +12,7 @@ import org.koin.dsl.module
 val appModule = module {
     // Processors
     factory { InitProcessor() }
-    factory { MainProcessor() }
+    factory { MainProcessor(get()) }
     
     // Reducers
     factory { InitReducer() }
