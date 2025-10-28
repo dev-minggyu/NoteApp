@@ -1,11 +1,11 @@
 package com.note.core.repository.di
 
-import com.note.core.repository.exam.ExamRepositoryImpl
-import com.note.domain.repository.ExamRepository
+import com.note.core.repository.exam.NoteRepositoryImpl
+import com.note.domain.repository.NoteRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<ExamRepository> {
-        ExamRepositoryImpl(get(), get())
+    single<NoteRepository> {
+        NoteRepositoryImpl(get())
     }
 }
