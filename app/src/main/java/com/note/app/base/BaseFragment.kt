@@ -15,7 +15,7 @@ import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<T : ViewBinding, Action : UiAction, Mutation : UiMutation, State : UiState, Event : UiEvent, VM : BaseViewModel<Action, Mutation, State, Event>> :
+abstract class BaseFragment<T : ViewBinding, Action : UiAction, Mutation : UiMutation, State : UiState, Event : UiEvent, VM : BaseViewModel<State, Action, Event, Mutation>> :
     Fragment() {
     private var _binding: T? = null
     val binding get() = _binding!!

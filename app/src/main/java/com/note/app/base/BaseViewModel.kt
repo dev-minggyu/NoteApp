@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<Action : UiAction, Mutation : UiMutation, State : UiState, Event : UiEvent>(
+abstract class BaseViewModel<State : UiState, Action : UiAction, Event : UiEvent, Mutation : UiMutation>(
     private val processor: BaseProcessor<Action, Mutation>,
     private val reducer: BaseReducer<Mutation, State, Event>,
 ) : ViewModel() {
