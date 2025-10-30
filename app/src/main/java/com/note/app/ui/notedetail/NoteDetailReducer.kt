@@ -10,11 +10,11 @@ class NoteDetailReducer :
         mutation: NoteDetailContract.Mutation
     ): ReduceResult<NoteDetailContract.State, NoteDetailContract.Event> {
         return when (mutation) {
-            is NoteDetailContract.Mutation.ShowLoader -> stateWithEffects(
+            is NoteDetailContract.Mutation.ShowLoader -> stateWithEvents(
                 newState = currentState.copy(isLoading = true, error = null)
             )
 
-            is NoteDetailContract.Mutation.NoteLoaded -> stateWithEffects(
+            is NoteDetailContract.Mutation.NoteLoaded -> stateWithEvents(
                 newState = currentState.copy(
                     note = mutation.note,
                     title = mutation.note.title,
@@ -23,35 +23,35 @@ class NoteDetailReducer :
                 )
             )
 
-            is NoteDetailContract.Mutation.TitleUpdated -> stateWithEffects(
+            is NoteDetailContract.Mutation.TitleUpdated -> stateWithEvents(
                 newState = currentState.copy(title = mutation.title)
             )
 
-            is NoteDetailContract.Mutation.ContentUpdated -> stateWithEffects(
+            is NoteDetailContract.Mutation.ContentUpdated -> stateWithEvents(
                 newState = currentState.copy(content = mutation.content)
             )
 
-            is NoteDetailContract.Mutation.SavingNote -> stateWithEffects(
+            is NoteDetailContract.Mutation.SavingNote -> stateWithEvents(
                 newState = currentState.copy(isSaving = true)
             )
 
-            is NoteDetailContract.Mutation.NoteSavedSuccess -> stateWithEffects(
+            is NoteDetailContract.Mutation.NoteSavedSuccess -> stateWithEvents(
                 newState = currentState.copy(isSaving = false),
-                effectList = listOf(NoteDetailContract.Event.NoteSaved)
+                eventList = listOf(NoteDetailContract.Event.NoteSaved)
             )
 
-            is NoteDetailContract.Mutation.ShowError -> stateWithEffects(
+            is NoteDetailContract.Mutation.ShowError -> stateWithEvents(
                 newState = currentState.copy(
                     isLoading = false,
                     isSaving = false,
                     error = mutation.error
                 ),
-                effectList = listOf(NoteDetailContract.Event.ShowError(mutation.error))
+                eventList = listOf(NoteDetailContract.Event.ShowError(mutation.error))
             )
 
-            is NoteDetailContract.Mutation.NavigateBackMutation -> stateWithEffects(
+            is NoteDetailContract.Mutation.NavigateBackMutation -> stateWithEvents(
                 newState = currentState,
-                effectList = listOf(NoteDetailContract.Event.NavigateBack)
+                eventList = listOf(NoteDetailContract.Event.NavigateBack)
             )
         }
     }

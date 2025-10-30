@@ -8,11 +8,11 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
         mutation: MainContract.Mutation
     ): ReduceResult<MainContract.State, MainContract.Event> {
         return when (mutation) {
-            is MainContract.Mutation.ShowLoader -> stateWithEffects(
+            is MainContract.Mutation.ShowLoader -> stateWithEvents(
                 newState = currentState.copy(isLoading = true, error = null)
             )
 
-            is MainContract.Mutation.ShowContent -> stateWithEffects(
+            is MainContract.Mutation.NoteLoaded -> stateWithEvents(
                 newState = currentState.copy(
                     notes = mutation.notes,
                     isLoading = false,
@@ -20,22 +20,22 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
                 )
             )
 
-            is MainContract.Mutation.ShowError -> stateWithEffects(
+            is MainContract.Mutation.ShowError -> stateWithEvents(
                 newState = currentState.copy(isLoading = false, error = mutation.error),
-                effectList = listOf(MainContract.Event.ShowError(mutation.error))
+                eventList = listOf(MainContract.Event.ShowError(mutation.error))
             )
 
-            is MainContract.Mutation.ToggleView -> stateWithEffects(
+            is MainContract.Mutation.ToggleView -> stateWithEvents(
                 newState = currentState.copy(isGridView = !currentState.isGridView)
             )
 
-            is MainContract.Mutation.NoteDeleted -> stateWithEffects(
+            is MainContract.Mutation.NoteDeleted -> stateWithEvents(
                 newState = currentState
             )
 
-            is MainContract.Mutation.NavigateToDetailMutation -> stateWithEffects(
+            is MainContract.Mutation.NavigateToDetailMutation -> stateWithEvents(
                 newState = currentState,
-                effectList = listOf(MainContract.Event.NavigateToDetail(mutation.noteId))
+                eventList = listOf(MainContract.Event.NavigateToDetail(mutation.noteId))
             )
         }
     }

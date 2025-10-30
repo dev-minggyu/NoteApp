@@ -51,8 +51,8 @@ fun NoteDetailScreen(
     }
 
     LaunchedEffect(Unit) {
-        viewModel.uiEffect.collect { effect ->
-            when (effect) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
                 is NoteDetailContract.Event.NavigateBack -> {
                     onNavigateBack()
                 }
@@ -62,7 +62,7 @@ fun NoteDetailScreen(
                 }
 
                 is NoteDetailContract.Event.ShowError -> {
-                    when (effect.error) {
+                    when (event.error) {
                         NoteDetailContract.Event.Error.InvalidNote -> {
                             Toast.makeText(context, context.getString(R.string.note_detail_fail_load_note), Toast.LENGTH_SHORT).show()
                         }
@@ -92,7 +92,7 @@ fun NoteDetailScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { viewModel.sendEvent(NoteDetailContract.Action.NavigateBack) }) {
+                    IconButton(onClick = { viewModel.sendAction(NoteDetailContract.Action.NavigateBack) }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(R.string.note_detail_back),
@@ -102,7 +102,7 @@ fun NoteDetailScreen(
                 },
                 actions = {
                     IconButton(
-                        onClick = { viewModel.sendEvent(NoteDetailContract.Action.SaveNote) },
+                        onClick = { viewModel.sendAction(NoteDetailContract.Action.SaveNote) },
                         enabled = !state.isSaving
                     ) {
                         if (state.isSaving) {
@@ -141,7 +141,7 @@ fun NoteDetailScreen(
             } else {
                 OutlinedTextField(
                     value = state.title,
-                    onValueChange = { viewModel.sendEvent(NoteDetailContract.Action.UpdateTitle(it)) },
+                    onValueChange = { viewModel.sendAction(NoteDetailContract.Action.UpdateTitle(it)) },
                     modifier = Modifier.fillMaxWidth(),
                     placeholder = { Text(stringResource(R.string.note_detail_placeholder_title), color = AppColors.emptyText) },
                     textStyle = LocalTextStyle.current.copy(
@@ -159,7 +159,7 @@ fun NoteDetailScreen(
 
                 OutlinedTextField(
                     value = state.content,
-                    onValueChange = { viewModel.sendEvent(NoteDetailContract.Action.UpdateContent(it)) },
+                    onValueChange = { viewModel.sendAction(NoteDetailContract.Action.UpdateContent(it)) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
