@@ -58,6 +58,8 @@ fun Project.configureAndroidApplication() {
             implementation(platform(libs.findLibrary("compose.bom").get()))
             implementation(libs.findLibrary("compose.foundation").get())
             implementation(libs.findLibrary("compose.material3").get())
+            implementation(libs.findLibrary("compose.material.icons.core").get())
+            implementation(libs.findLibrary("compose.material.icons.extended").get())
 
             implementation(libs.findLibrary("androidx.core").get())
             implementation(libs.findLibrary("androidx.appcompat").get())

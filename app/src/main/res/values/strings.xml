@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">NoteApp</string>
+    <!-- Main -->
+    <string name="main_title">메모</string>
+    <string name="main_fail_load_note">메모 불러오기 실패</string>
+    <string name="main_fail_delete_note">메모 삭제 실패</string>
+    <string name="main_change_note_list_layout">리스트 레이아웃 변경</string>
+    <string name="main_add_note">메모 작성</string>
+    <string name="main_empty_note_list">메모가 없습니다.</string>
+    <string name="main_empty_title">제목없음</string>
 </resources>

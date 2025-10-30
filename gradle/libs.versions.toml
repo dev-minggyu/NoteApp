@@ -93,6 +93,9 @@ google-android-material = { module = "com.google.android.material:material", ver
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 
 # Hilt
 hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
