@@ -60,6 +60,7 @@ fun Project.configureAndroidApplication() {
             implementation(libs.findLibrary("compose.material3").get())
             implementation(libs.findLibrary("compose.material.icons.core").get())
             implementation(libs.findLibrary("compose.material.icons.extended").get())
+            implementation(libs.findLibrary("compose.navigation").get())
 
             implementation(libs.findLibrary("androidx.core").get())
             implementation(libs.findLibrary("androidx.appcompat").get())

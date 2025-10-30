@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name="com.note.app.ui.main.MainActivity"
+            android:name="com.note.app.ui.MainActivity"
             android:exported="false" />
     </application>
 </manifest>

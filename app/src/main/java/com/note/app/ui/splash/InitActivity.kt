@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.note.app.base.BaseActivity
 import com.note.app.databinding.ActivityInitBinding
-import com.note.app.ui.main.MainActivity
+import com.note.app.ui.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InitActivity :
