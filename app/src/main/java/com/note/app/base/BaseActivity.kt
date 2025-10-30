@@ -12,7 +12,7 @@ import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 import kotlinx.coroutines.launch
 
-abstract class BaseActivity<T : ViewBinding, Action : UiAction, Mutation : UiMutation, State : UiState, Event : UiEvent, VM : BaseViewModel<Action, Mutation, State, Event>> :
+abstract class BaseActivity<T : ViewBinding, Action : UiAction, Mutation : UiMutation, State : UiState, Event : UiEvent, VM : BaseViewModel<State, Action, Event, Mutation>> :
     AppCompatActivity() {
     private var _binding: T? = null
     val binding get() = _binding!!

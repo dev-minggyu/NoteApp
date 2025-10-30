@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 class NoteDetailViewModel(
     private val processor: NoteDetailProcessor,
     private val reducer: NoteDetailReducer
-) : BaseViewModel<NoteDetailContract.Action, NoteDetailContract.Mutation, NoteDetailContract.State, NoteDetailContract.Event>(
+) : BaseViewModel<NoteDetailContract.State, NoteDetailContract.Action, NoteDetailContract.Event, NoteDetailContract.Mutation>(
     processor = processor,
     reducer = reducer
 ) {
