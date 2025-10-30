@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.onSubscription
 class MainViewModel(
     private val processor: MainProcessor,
     private val reducer: MainReducer
-) : BaseViewModel<MainContract.Action, MainContract.Mutation, MainContract.State, MainContract.Event>(
+) : BaseViewModel<MainContract.State, MainContract.Action, MainContract.Event, MainContract.Mutation>(
     processor = processor,
     reducer = reducer
 ) {
