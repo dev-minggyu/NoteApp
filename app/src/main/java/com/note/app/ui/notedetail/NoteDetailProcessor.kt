@@ -26,9 +26,13 @@ class NoteDetailProcessor(
         }
     }
 
-    private fun loadNote(noteId: Long): Flow<NoteDetailContract.Mutation> {
+    private fun loadNote(noteId: Long?): Flow<NoteDetailContract.Mutation> {
         return flow {
             emit(NoteDetailContract.Mutation.ShowLoader)
+            if (noteId == null) {
+                emit(NoteDetailContract.Mutation.ShowError(NoteDetailContract.Event.Error.InvalidNote))
+                return@flow
+            }
             runCatching {
                 repository.getNoteById(noteId)
             }.onSuccess { note ->
