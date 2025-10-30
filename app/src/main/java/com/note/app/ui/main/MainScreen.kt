@@ -47,7 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.note.app.R
 import com.note.app.ui.theme.AppColors
-import com.note.app.utils.extension.HandleEffects
+import com.note.app.utils.extension.HandleEvents
 import com.note.domain.model.Note
 import org.koin.androidx.compose.koinViewModel
 
@@ -60,14 +60,14 @@ fun MainScreen(
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
 
-    HandleEffects(viewModel.uiEffect) { effect ->
-        when (effect) {
+    HandleEvents(viewModel.uiEvent) { event ->
+        when (event) {
             is MainContract.Event.NavigateToDetail -> {
-                onNavigateToDetail(effect.noteId)
+                onNavigateToDetail(event.noteId)
             }
 
             is MainContract.Event.ShowError -> {
-                when (effect.error) {
+                when (event.error) {
                     MainContract.Event.Error.InvalidNote -> {
                         Toast.makeText(context, context.getString(R.string.main_fail_load_note), Toast.LENGTH_SHORT).show()
                     }
@@ -92,7 +92,7 @@ fun MainScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { viewModel.sendEvent(MainContract.Action.ToggleViewMode) }) {
+                    IconButton(onClick = { viewModel.sendAction(MainContract.Action.ToggleViewMode) }) {
                         Icon(
                             imageVector = Icons.Default.Menu,
                             contentDescription = stringResource(R.string.main_change_note_list_layout),
@@ -107,7 +107,7 @@ fun MainScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { viewModel.sendEvent(MainContract.Action.NavigateToDetail(null)) },
+                onClick = { viewModel.sendAction(MainContract.Action.NavigateToDetail(null)) },
                 containerColor = AppColors.primary,
                 shape = CircleShape,
                 modifier = Modifier.size(56.dp)
@@ -148,7 +148,7 @@ fun MainScreen(
                     NotesGridView(
                         notes = state.notes,
                         onNoteClick = { note ->
-                            viewModel.sendEvent(MainContract.Action.NavigateToDetail(note.id))
+                            viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))
                         }
                     )
                 }
@@ -157,7 +157,7 @@ fun MainScreen(
                     NotesListView(
                         notes = state.notes,
                         onNoteClick = { note ->
-                            viewModel.sendEvent(MainContract.Action.NavigateToDetail(note.id))
+                            viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))
                         }
                     )
                 }

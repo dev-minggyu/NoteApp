@@ -9,14 +9,14 @@ import com.note.app.base.contract.UiEvent
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun <T : UiEvent> HandleEffects(
-    effectFlow: Flow<T>,
-    onEffect: (T) -> Unit
+fun <T : UiEvent> HandleEvents(
+    eventFlow: Flow<T>,
+    onEvent: (T) -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    LaunchedEffect(effectFlow, lifecycleOwner) {
-        effectFlow
+    LaunchedEffect(eventFlow, lifecycleOwner) {
+        eventFlow
             .flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .collect(onEffect)
+            .collect(onEvent)
     }
 }

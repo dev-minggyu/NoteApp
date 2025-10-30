@@ -8,9 +8,9 @@ class InitReducer : BaseReducer<InitContract.Mutation, InitContract.State, InitC
         mutation: InitContract.Mutation
     ): ReduceResult<InitContract.State, InitContract.Event> {
         return when (mutation) {
-            InitContract.Mutation.InitComplete -> stateWithEffects(
+            InitContract.Mutation.InitComplete -> stateWithEvents(
                 newState = currentState.copy(isInitialized = true),
-                effectList = listOf(InitContract.Event.NavigateToMain)
+                eventList = listOf(InitContract.Event.NavigateToMain)
             )
         }
     }

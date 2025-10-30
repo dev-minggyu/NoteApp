@@ -4,13 +4,13 @@ import com.note.app.base.contract.UiEvent
 import com.note.app.base.contract.UiMutation
 import com.note.app.base.contract.UiState
 
-abstract class BaseReducer<Mutation : UiMutation, State : UiState, Effect : UiEvent> {
-    data class ReduceResult<State : UiState, Effect : UiEvent>(val newState: State, val effects: List<Effect>)
+abstract class BaseReducer<Mutation : UiMutation, State : UiState, Event : UiEvent> {
+    data class ReduceResult<State : UiState, Event : UiEvent>(val newState: State, val events: List<Event>)
 
-    abstract fun reduce(currentState: State, mutation: Mutation): ReduceResult<State, Effect>
+    abstract fun reduce(currentState: State, mutation: Mutation): ReduceResult<State, Event>
 
-    protected fun stateWithEffects(
+    protected fun stateWithEvents(
         newState: State,
-        effectList: List<Effect> = emptyList()
-    ): ReduceResult<State, Effect> = ReduceResult(newState, effectList)
+        eventList: List<Event> = emptyList()
+    ): ReduceResult<State, Event> = ReduceResult(newState, eventList)
 }
