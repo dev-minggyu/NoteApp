@@ -11,16 +11,16 @@ import kotlinx.coroutines.flow.map
 class MainProcessor(
     private val repository: NoteRepository
 ) : BaseProcessor<MainContract.Action, MainContract.Mutation>() {
-    override fun process(event: MainContract.Action): Flow<MainContract.Mutation> {
-        return when (event) {
             is MainContract.Action.LoadNotes -> loadNotes()
+    override fun process(action: MainContract.Action): Flow<MainContract.Mutation> {
+        return when (action) {
             is MainContract.Action.ToggleViewMode -> flow {
                 emit(MainContract.Mutation.ToggleView)
             }
 
-            is MainContract.Action.DeleteNote -> deleteNote(event.note)
+            is MainContract.Action.DeleteNote -> deleteNote(action.note)
             is MainContract.Action.NavigateToDetail -> flow {
-                emit(MainContract.Mutation.NavigateToDetailMutation(event.noteId))
+                emit(MainContract.Mutation.NavigateToDetailMutation(action.noteId))
             }
         }
     }

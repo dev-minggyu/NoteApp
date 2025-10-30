@@ -13,10 +13,10 @@ class InitViewModel(
     processor = processor,
     reducer = reducer
 ) {
-    override val uiState: StateFlow<InitContract.State> = uiEvent
+    override val uiState: StateFlow<InitContract.State> = uiAction
         .onSubscription { sendEvent(InitContract.Action.Initialize) }
         .reduceToState(
-            processor = ::processEvent,
+            processor = ::processAction,
             reducer = ::reduceMutation,
             initialState = InitContract.State(),
             scope = viewModelScope

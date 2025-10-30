@@ -39,14 +39,14 @@ class InitActivity :
         }
     }
 
-    override fun handleEffect(effect: InitContract.Event) {
-        when (effect) {
+    override fun handleEvent(event: InitContract.Event) {
+        when (event) {
             is InitContract.Event.NavigateToMain -> {
                 navigateToMain()
             }
 
             is InitContract.Event.ShowError -> {
-                Toast.makeText(this, effect.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
         }
     }

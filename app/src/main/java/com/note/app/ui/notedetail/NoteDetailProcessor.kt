@@ -14,11 +14,11 @@ class NoteDetailProcessor(
     private var currentTitle: String = ""
     private var currentContent: String = ""
 
-    override fun process(event: NoteDetailContract.Action): Flow<NoteDetailContract.Mutation> {
-        return when (event) {
-            is NoteDetailContract.Action.LoadNote -> loadNote(event.noteId)
-            is NoteDetailContract.Action.UpdateTitle -> updateTitle(event.title)
-            is NoteDetailContract.Action.UpdateContent -> updateContent(event.content)
+    override fun process(action: NoteDetailContract.Action): Flow<NoteDetailContract.Mutation> {
+        return when (action) {
+            is NoteDetailContract.Action.LoadNote -> loadNote(action.noteId)
+            is NoteDetailContract.Action.UpdateTitle -> updateTitle(action.title)
+            is NoteDetailContract.Action.UpdateContent -> updateContent(action.content)
             is NoteDetailContract.Action.SaveNote -> saveNote()
             is NoteDetailContract.Action.NavigateBack -> flow {
                 emit(NoteDetailContract.Mutation.NavigateBackMutation)

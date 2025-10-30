@@ -13,10 +13,10 @@ class MainViewModel(
     processor = processor,
     reducer = reducer
 ) {
-    override val uiState: StateFlow<MainContract.State> = uiEvent
         .onSubscription { sendEvent(MainContract.Action.LoadNotes) }
+    override val uiState: StateFlow<MainContract.State> = uiAction
         .reduceToState(
-            processor = ::processEvent,
+            processor = ::processAction,
             reducer = ::reduceMutation,
             initialState = MainContract.State(),
             scope = viewModelScope
