@@ -19,10 +19,4 @@ class NoteDetailViewModel(
             initialState = NoteDetailContract.State(),
             scope = viewModelScope
         )
-
-    fun loadNote(noteId: Long?) {
-        noteId?.let {
-            sendEvent(NoteDetailContract.Action.LoadNote(it))
-        }
-    }
 }
