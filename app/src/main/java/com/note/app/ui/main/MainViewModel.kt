@@ -14,7 +14,7 @@ class MainViewModel(
     reducer = reducer
 ) {
     override val uiState: StateFlow<MainContract.State> = uiEvent
-        .onSubscription { sendEvent(MainContract.Action.LoadData) }
+        .onSubscription { sendEvent(MainContract.Action.LoadNotes) }
         .reduceToState(
             processor = ::processEvent,
             reducer = ::reduceMutation,
