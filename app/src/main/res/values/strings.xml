@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">NoteApp</string>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_navi_label_main">메모</string>
+    <string name="bottom_navi_label_search">검색</string>
+
     <!-- Main -->
     <string name="main_title">메모</string>
     <string name="main_fail_load_note">메모 불러오기 실패</string>
