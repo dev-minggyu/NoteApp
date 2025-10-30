@@ -21,8 +21,8 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
             )
 
             is MainContract.Mutation.ShowError -> stateWithEffects(
-                newState = currentState.copy(isLoading = false, error = mutation.message),
-                effectList = listOf(MainContract.Event.ShowToast(mutation.message))
+                newState = currentState.copy(isLoading = false, error = mutation.error),
+                effectList = listOf(MainContract.Event.ShowError(mutation.error))
             )
 
             is MainContract.Mutation.ToggleView -> stateWithEffects(
@@ -30,8 +30,7 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
             )
 
             is MainContract.Mutation.NoteDeleted -> stateWithEffects(
-                newState = currentState,
-                effectList = listOf(MainContract.Event.ShowToast("메모 삭제 완료"))
+                newState = currentState
             )
 
             is MainContract.Mutation.NavigateToDetailMutation -> stateWithEffects(

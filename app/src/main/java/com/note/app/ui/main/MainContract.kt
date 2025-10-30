@@ -18,20 +18,25 @@ class MainContract {
         val notes: List<Note> = emptyList(),
         val isGridView: Boolean = false,
         val isLoading: Boolean = false,
-        val error: String? = null
+        val error: Event.Error? = null
     ) : UiState
 
     sealed interface Event : UiEvent {
         data class NavigateToDetail(val noteId: Long?) : Event
-        data class ShowToast(val message: String) : Event
+        data class ShowError(val error: Error) : Event
+
+        sealed interface Error {
+            data object InvalidNote : Error
+            data object DeleteFailure : Error
+        }
     }
 
     sealed interface Mutation : UiMutation {
         data object ShowLoader : Mutation
         data class ShowContent(val notes: List<Note>) : Mutation
-        data class ShowError(val message: String) : Mutation
         data object ToggleView : Mutation
         data class NoteDeleted(val note: Note) : Mutation
         data class NavigateToDetailMutation(val noteId: Long?) : Mutation
+        data class ShowError(val error: Event.Error) : Mutation
     }
 }
