@@ -47,7 +47,7 @@ fun NoteDetailScreen(
     val context = LocalContext.current
 
     LaunchedEffect(noteId) {
-        viewModel.loadNote(noteId)
+        viewModel.sendAction(NoteDetailContract.Action.LoadNote(noteId))
     }
 
     LaunchedEffect(Unit) {
