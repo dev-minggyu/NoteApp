@@ -33,7 +33,7 @@ class MainProcessor(
                     MainContract.Mutation.ShowContent(notes)
                 }
                 .catch { error ->
-                    emit(MainContract.Mutation.ShowError(error.message ?: "메모 로드 실패"))
+                    emit(MainContract.Mutation.ShowError(MainContract.Event.Error.InvalidNote))
                 }
                 .collect { mutation ->
                     emit(mutation)
@@ -48,7 +48,7 @@ class MainProcessor(
             }.onSuccess {
                 emit(MainContract.Mutation.NoteDeleted(note))
             }.onFailure { error ->
-                emit(MainContract.Mutation.ShowError(error.message ?: "메모 삭제 실패"))
+                emit(MainContract.Mutation.ShowError(MainContract.Event.Error.DeleteFailure))
             }
         }
     }
