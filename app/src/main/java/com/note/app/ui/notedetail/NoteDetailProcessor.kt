@@ -28,7 +28,7 @@ class NoteDetailProcessor(
 
     private fun loadNote(noteId: Long?): Flow<NoteDetailContract.Mutation> {
         return flow {
-            emit(NoteDetailContract.Mutation.ShowLoader)
+            emit(NoteDetailContract.Mutation.ShowProgress)
             if (noteId == null) {
                 emit(NoteDetailContract.Mutation.ShowError(NoteDetailContract.Event.Error.InvalidNote))
                 return@flow

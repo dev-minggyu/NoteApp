@@ -38,7 +38,7 @@ class NoteDetailContract {
     }
 
     sealed interface Mutation : UiMutation {
-        data object ShowLoader : Mutation
+        data object ShowProgress : Mutation
         data class NoteLoaded(val note: Note) : Mutation
         data class TitleUpdated(val title: String) : Mutation
         data class ContentUpdated(val content: String) : Mutation

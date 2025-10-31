@@ -8,7 +8,7 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
         mutation: MainContract.Mutation
     ): ReduceResult<MainContract.State, MainContract.Event> {
         return when (mutation) {
-            is MainContract.Mutation.ShowLoader -> stateWithEvents(
+            is MainContract.Mutation.ShowProgress -> stateWithEvents(
                 newState = currentState.copy(isLoading = true, error = null)
             )
 

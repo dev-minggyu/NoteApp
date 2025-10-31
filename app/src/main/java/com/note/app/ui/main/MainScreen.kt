@@ -92,7 +92,7 @@ fun MainScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { viewModel.sendAction(MainContract.Action.ToggleViewMode) }) {
+                    IconButton(onClick = { viewModel.sendAction(MainContract.Action.ToggleListMode) }) {
                         Icon(
                             imageVector = Icons.Default.Menu,
                             contentDescription = stringResource(R.string.main_change_note_list_layout),

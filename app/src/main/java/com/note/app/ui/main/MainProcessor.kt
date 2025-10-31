@@ -15,7 +15,7 @@ class MainProcessor(
     override fun process(action: MainContract.Action): Flow<MainContract.Mutation> {
         return when (action) {
             is MainContract.Action.Stream.ObserveNotes -> observeNotes()
-            is MainContract.Action.ToggleViewMode -> flow {
+            is MainContract.Action.ToggleListMode -> flow {
                 emit(MainContract.Mutation.ToggleView)
             }
 
@@ -32,7 +32,7 @@ class MainProcessor(
                 MainContract.Mutation.NoteLoaded(notes)
             }
             .onStart {
-                emit(MainContract.Mutation.ShowLoader)
+                emit(MainContract.Mutation.ShowProgress)
             }
             .catch { error ->
                 emit(MainContract.Mutation.ShowError(MainContract.Event.Error.InvalidNote))
