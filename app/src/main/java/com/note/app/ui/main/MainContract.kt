@@ -8,7 +8,7 @@ import com.note.domain.model.Note
 
 class MainContract {
     sealed interface Action : UiAction {
-        data object ToggleViewMode : Action
+        data object ToggleListMode : Action
         data class DeleteNote(val note: Note) : Action
         data class NavigateToDetail(val noteId: Long?) : Action
 
@@ -35,7 +35,7 @@ class MainContract {
     }
 
     sealed interface Mutation : UiMutation {
-        data object ShowLoader : Mutation
+        data object ShowProgress : Mutation
         data class NoteLoaded(val notes: List<Note>) : Mutation
         data object ToggleView : Mutation
         data class NoteDeleted(val note: Note) : Mutation

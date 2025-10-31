@@ -10,7 +10,7 @@ class NoteDetailReducer :
         mutation: NoteDetailContract.Mutation
     ): ReduceResult<NoteDetailContract.State, NoteDetailContract.Event> {
         return when (mutation) {
-            is NoteDetailContract.Mutation.ShowLoader -> stateWithEvents(
+            is NoteDetailContract.Mutation.ShowProgress -> stateWithEvents(
                 newState = currentState.copy(isLoading = true, error = null)
             )
 
