@@ -14,9 +14,9 @@ class NoteDetailViewModel(
 ) {
     override val uiState: StateFlow<NoteDetailContract.State> = uiAction
         .reduceToState(
+            initialState = NoteDetailContract.State(),
             processor = ::processAction,
             reducer = ::reduceMutation,
-            initialState = NoteDetailContract.State(),
             scope = viewModelScope
         )
 }

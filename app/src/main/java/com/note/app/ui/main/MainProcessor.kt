@@ -7,13 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 class MainProcessor(
     private val repository: NoteRepository
 ) : BaseProcessor<MainContract.Action, MainContract.Mutation>() {
-            is MainContract.Action.LoadNotes -> loadNotes()
     override fun process(action: MainContract.Action): Flow<MainContract.Mutation> {
         return when (action) {
+            is MainContract.Action.Stream.ObserveNotes -> observeNotes()
             is MainContract.Action.ToggleViewMode -> flow {
                 emit(MainContract.Mutation.ToggleView)
             }
@@ -25,20 +26,17 @@ class MainProcessor(
         }
     }
 
-    private fun loadNotes(): Flow<MainContract.Mutation> {
-        return flow {
-            emit(MainContract.Mutation.ShowLoader)
-            repository.getAllNotes()
-                .map<List<Note>, MainContract.Mutation> { notes ->
-                    MainContract.Mutation.ShowContent(notes)
-                }
-                .catch { error ->
-                    emit(MainContract.Mutation.ShowError(MainContract.Event.Error.InvalidNote))
-                }
-                .collect { mutation ->
-                    emit(mutation)
-                }
-        }
+    private fun observeNotes(): Flow<MainContract.Mutation> {
+        return repository.getAllNotes()
+            .map<List<Note>, MainContract.Mutation> { notes ->
+                MainContract.Mutation.NoteLoaded(notes)
+            }
+            .onStart {
+                emit(MainContract.Mutation.ShowLoader)
+            }
+            .catch { error ->
+                emit(MainContract.Mutation.ShowError(MainContract.Event.Error.InvalidNote))
+            }
     }
 
     private fun deleteNote(note: Note): Flow<MainContract.Mutation> {
