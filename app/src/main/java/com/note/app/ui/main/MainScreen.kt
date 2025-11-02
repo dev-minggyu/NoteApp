@@ -14,10 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -144,18 +144,10 @@ fun MainScreen(
                     )
                 }
 
-                state.isGridView -> {
-                    NotesGridView(
-                        notes = state.notes,
-                        onNoteClick = { note ->
-                            viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))
-                        }
-                    )
-                }
-
                 else -> {
-                    NotesListView(
+                    NoteList(
                         notes = state.notes,
+                        isGridView = state.isGridView,
                         onNoteClick = { note ->
                             viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))
                         }
@@ -167,35 +159,35 @@ fun MainScreen(
 }
 
 @Composable
-fun NotesListView(
+fun NoteList(
     notes: List<Note>,
+    isGridView: Boolean,
     onNoteClick: (Note) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(notes) { note ->
-            NoteListItem(note = note, onClick = { onNoteClick(note) })
+    if (isGridView) {
+        LazyVerticalStaggeredGrid(
+            columns = StaggeredGridCells.Fixed(2),
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalItemSpacing = 12.dp
+        ) {
+            items(
+                items = notes,
+                key = { it.id }
+            ) { note ->
+                NoteGridItem(note = note, onClick = { onNoteClick(note) })
+            }
         }
-    }
-}
-
-@Composable
-fun NotesGridView(
-    notes: List<Note>,
-    onNoteClick: (Note) -> Unit
-) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(notes) { note ->
-            NoteGridItem(note = note, onClick = { onNoteClick(note) })
+    } else {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(items = notes, key = { it.id }) { note ->
+                NoteListItem(note = note, onClick = { onNoteClick(note) })
+            }
         }
     }
 }
@@ -246,7 +238,6 @@ fun NoteGridItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = AppColors.contentBackground),
