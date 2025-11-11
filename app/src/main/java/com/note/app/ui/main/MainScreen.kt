@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
@@ -164,74 +162,24 @@ fun NoteList(
     isGridView: Boolean,
     onNoteClick: (Note) -> Unit
 ) {
-    if (isGridView) {
-        LazyVerticalStaggeredGrid(
-            columns = StaggeredGridCells.Fixed(2),
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalItemSpacing = 12.dp
-        ) {
-            items(
-                items = notes,
-                key = { it.id }
-            ) { note ->
-                NoteGridItem(note = note, onClick = { onNoteClick(note) })
-            }
-        }
-    } else {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(items = notes, key = { it.id }) { note ->
-                NoteListItem(note = note, onClick = { onNoteClick(note) })
-            }
+    LazyVerticalStaggeredGrid(
+        columns = StaggeredGridCells.Fixed(if (isGridView) 2 else 1),
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalItemSpacing = 12.dp
+    ) {
+        items(
+            items = notes,
+            key = { it.id }
+        ) { note ->
+            NoteListItem(note = note, onClick = { onNoteClick(note) })
         }
     }
 }
 
 @Composable
 fun NoteListItem(
-    note: Note,
-    onClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = AppColors.contentBackground),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            Text(
-                text = note.title.ifBlank { stringResource(R.string.main_empty_title) },
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = AppColors.titleText,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = note.content,
-                fontSize = 14.sp,
-                color = AppColors.subTitleText,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-    }
-}
-
-@Composable
-fun NoteGridItem(
     note: Note,
     onClick: () -> Unit
 ) {
