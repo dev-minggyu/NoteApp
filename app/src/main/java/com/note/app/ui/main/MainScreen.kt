@@ -1,6 +1,7 @@
 package com.note.app.ui.main
 
 import android.widget.Toast
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,6 +38,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -57,6 +59,9 @@ fun MainScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val toggleButtonDegree by animateFloatAsState(
+        targetValue = if (state.isGrid) 90f else 0f
+    )
 
     HandleEvents(viewModel.uiEvent) { event ->
         when (event) {
@@ -92,6 +97,7 @@ fun MainScreen(
                 actions = {
                     IconButton(onClick = { viewModel.sendAction(MainContract.Action.ToggleListMode) }) {
                         Icon(
+                            modifier = Modifier.rotate(toggleButtonDegree),
                             imageVector = Icons.Default.Menu,
                             contentDescription = stringResource(R.string.main_change_note_list_layout),
                             tint = AppTheme.colors.toggleTint,
@@ -145,7 +151,7 @@ fun MainScreen(
                 else -> {
                     NoteList(
                         notes = state.notes,
-                        isGridView = state.isGridView,
+                        isGrid = state.isGrid,
                         onNoteClick = { note ->
                             viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))
                         }
@@ -159,11 +165,11 @@ fun MainScreen(
 @Composable
 fun NoteList(
     notes: List<Note>,
-    isGridView: Boolean,
+    isGrid: Boolean,
     onNoteClick: (Note) -> Unit
 ) {
     LazyVerticalStaggeredGrid(
-        columns = StaggeredGridCells.Fixed(if (isGridView) 2 else 1),
+        columns = StaggeredGridCells.Fixed(if (isGrid) 2 else 1),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -173,7 +179,12 @@ fun NoteList(
             items = notes,
             key = { it.id }
         ) { note ->
-            NoteListItem(note = note, onClick = { onNoteClick(note) })
+            Box(modifier = Modifier.animateItem()) {
+                NoteListItem(
+                    note = note,
+                    onClick = { onNoteClick(note) },
+                )
+            }
         }
     }
 }

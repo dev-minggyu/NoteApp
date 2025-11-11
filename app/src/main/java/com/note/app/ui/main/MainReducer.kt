@@ -26,7 +26,7 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
             )
 
             is MainContract.Mutation.ToggleView -> stateWithEvents(
-                newState = currentState.copy(isGridView = !currentState.isGridView)
+                newState = currentState.copy(isGrid = !currentState.isGrid)
             )
 
             is MainContract.Mutation.NoteDeleted -> stateWithEvents(

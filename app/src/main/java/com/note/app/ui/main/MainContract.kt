@@ -19,7 +19,7 @@ class MainContract {
 
     data class State(
         val notes: List<Note> = emptyList(),
-        val isGridView: Boolean = false,
+        val isGrid: Boolean = false,
         val isLoading: Boolean = false,
         val error: Event.Error? = null
     ) : UiState
