@@ -44,7 +44,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.note.app.R
-import com.note.app.ui.theme.AppColors
+import com.note.app.ui.theme.AppTheme
 import com.note.app.utils.extension.HandleEvents
 import com.note.domain.model.Note
 import org.koin.androidx.compose.koinViewModel
@@ -86,7 +86,7 @@ fun MainScreen(
                         text = stringResource(R.string.main_title),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = AppColors.titleText
+                        color = AppTheme.colors.titleText
                     )
                 },
                 actions = {
@@ -94,30 +94,30 @@ fun MainScreen(
                         Icon(
                             imageVector = Icons.Default.Menu,
                             contentDescription = stringResource(R.string.main_change_note_list_layout),
-                            tint = AppColors.toggleTint,
+                            tint = AppTheme.colors.toggleTint,
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = AppColors.contentBackground
+                    containerColor = AppTheme.colors.contentBackground
                 )
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { viewModel.sendAction(MainContract.Action.NavigateToDetail(null)) },
-                containerColor = AppColors.primary,
+                containerColor = AppTheme.colors.primary,
                 shape = CircleShape,
                 modifier = Modifier.size(56.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = stringResource(R.string.main_add_note),
-                    tint = AppColors.fabTint
+                    tint = AppTheme.colors.fabTint
                 )
             }
         },
-        containerColor = AppColors.contentBackground,
+        containerColor = AppTheme.colors.contentBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { paddingValues ->
         Box(
@@ -129,7 +129,7 @@ fun MainScreen(
                 state.isLoading -> {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center),
-                        color = AppColors.primary
+                        color = AppTheme.colors.primary
                     )
                 }
 
@@ -137,7 +137,7 @@ fun MainScreen(
                     Text(
                         text = stringResource(R.string.main_empty_note_list),
                         modifier = Modifier.align(Alignment.Center),
-                        color = AppColors.emptyText,
+                        color = AppTheme.colors.emptyText,
                         fontSize = 16.sp
                     )
                 }
@@ -188,7 +188,7 @@ fun NoteListItem(
             .fillMaxWidth()
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = AppColors.contentBackground),
+        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.contentBackground),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
@@ -200,7 +200,7 @@ fun NoteListItem(
                 text = note.title.ifBlank { stringResource(R.string.main_empty_title) },
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = AppColors.titleText,
+                color = AppTheme.colors.titleText,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -208,7 +208,7 @@ fun NoteListItem(
             Text(
                 text = note.content,
                 fontSize = 12.sp,
-                color = AppColors.subTitleText,
+                color = AppTheme.colors.subTitleText,
                 maxLines = 4,
                 overflow = TextOverflow.Ellipsis
             )

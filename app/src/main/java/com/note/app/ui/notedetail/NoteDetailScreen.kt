@@ -33,7 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.note.app.R
-import com.note.app.ui.theme.AppColors
+import com.note.app.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,7 +88,7 @@ fun NoteDetailScreen(
                         text = if (noteId == null) stringResource(R.string.note_detail_title_new) else stringResource(R.string.note_detail_title_edit),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = AppColors.titleText
+                        color = AppTheme.colors.titleText
                     )
                 },
                 navigationIcon = {
@@ -96,7 +96,7 @@ fun NoteDetailScreen(
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(R.string.note_detail_back),
-                            tint = AppColors.titleText
+                            tint = AppTheme.colors.titleText
                         )
                     }
                 },
@@ -108,24 +108,24 @@ fun NoteDetailScreen(
                         if (state.isSaving) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(24.dp),
-                                color = AppColors.primary,
+                                color = AppTheme.colors.primary,
                                 strokeWidth = 2.dp
                             )
                         } else {
                             Icon(
                                 imageVector = Icons.Default.Check,
                                 contentDescription = stringResource(R.string.note_detail_save),
-                                tint = AppColors.primary
+                                tint = AppTheme.colors.primary
                             )
                         }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = AppColors.contentBackground
+                    containerColor = AppTheme.colors.contentBackground
                 )
             )
         },
-        containerColor = AppColors.contentBackground
+        containerColor = AppTheme.colors.contentBackground
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -136,22 +136,22 @@ fun NoteDetailScreen(
             if (state.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.padding(16.dp),
-                    color = AppColors.primary
+                    color = AppTheme.colors.primary
                 )
             } else {
                 OutlinedTextField(
                     value = state.title,
                     onValueChange = { viewModel.sendAction(NoteDetailContract.Action.UpdateTitle(it)) },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text(stringResource(R.string.note_detail_placeholder_title), color = AppColors.emptyText) },
+                    placeholder = { Text(stringResource(R.string.note_detail_placeholder_title), color = AppTheme.colors.emptyText) },
                     textStyle = LocalTextStyle.current.copy(
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = AppColors.titleText
+                        color = AppTheme.colors.titleText
                     ),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = AppColors.primary,
-                        unfocusedBorderColor = AppColors.emptyText
+                        focusedBorderColor = AppTheme.colors.primary,
+                        unfocusedBorderColor = AppTheme.colors.emptyText
                     )
                 )
 
@@ -163,14 +163,14 @@ fun NoteDetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
-                    placeholder = { Text(stringResource(R.string.note_detail_placeholder_content), color = AppColors.emptyText) },
+                    placeholder = { Text(stringResource(R.string.note_detail_placeholder_content), color = AppTheme.colors.emptyText) },
                     textStyle = LocalTextStyle.current.copy(
                         fontSize = 16.sp,
-                        color = AppColors.titleText
+                        color = AppTheme.colors.titleText
                     ),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = AppColors.primary,
-                        unfocusedBorderColor = AppColors.emptyText
+                        focusedBorderColor = AppTheme.colors.primary,
+                        unfocusedBorderColor = AppTheme.colors.emptyText
                     )
                 )
             }
