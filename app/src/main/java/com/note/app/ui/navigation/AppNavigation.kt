@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.note.app.ui.main.mainNavGraph
-import com.note.app.ui.notedetail.detailNavGraph
+import com.note.app.ui.main.navigation.mainNavGraph
+import com.note.app.ui.notedetail.navigation.detailNavGraph
 
 @Composable
 fun AppNavigation() {

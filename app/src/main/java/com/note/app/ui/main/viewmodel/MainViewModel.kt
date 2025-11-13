@@ -1,7 +1,8 @@
-package com.note.app.ui.main
+package com.note.app.ui.main.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.note.app.base.BaseViewModel
+import com.note.app.ui.main.MainContract
 import com.note.app.utils.extension.reduceToState
 import kotlinx.coroutines.flow.StateFlow
 
