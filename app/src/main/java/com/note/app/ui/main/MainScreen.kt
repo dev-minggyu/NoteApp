@@ -21,7 +21,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -46,6 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.note.app.R
+import com.note.app.ui.component.SimpleTextField
 import com.note.app.ui.theme.AppTheme
 import com.note.app.utils.extension.HandleEvents
 import com.note.domain.model.Note
@@ -87,11 +90,37 @@ fun MainScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(R.string.main_title),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = AppTheme.colors.titleText
+                    SimpleTextField(
+                        value = state.searchQuery,
+                        onValueChange = { query ->
+                            viewModel.sendAction(MainContract.Action.SearchNote(query = query))
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "search",
+                                tint = AppTheme.colors.primary,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        },
+                        trailingIcon = {
+                            if (state.searchQuery.isNotEmpty()) {
+                                IconButton(
+                                    onClick = {
+                                        viewModel.sendAction(MainContract.Action.SearchNote(query = ""))
+                                    },
+                                    modifier = Modifier.size(24.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Close,
+                                        contentDescription = "search_clear",
+                                        tint = AppTheme.colors.primary,
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                }
+                            }
+                        }
                     )
                 },
                 actions = {

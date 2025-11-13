@@ -1,6 +1,8 @@
 package com.note.app.ui.main
 
 import com.note.app.base.BaseReducer
+import com.note.app.ui.main.MainContract.Event.NavigateToDetail
+import com.note.app.ui.main.MainContract.Event.ShowError
 
 class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainContract.Event>() {
     override fun reduce(
@@ -13,16 +15,12 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
             )
 
             is MainContract.Mutation.NoteLoaded -> stateWithEvents(
-                newState = currentState.copy(
-                    notes = mutation.notes,
-                    isLoading = false,
-                    error = null
-                )
+                newState = currentState.copy(notes = mutation.notes, isLoading = false, error = null)
             )
 
             is MainContract.Mutation.ShowError -> stateWithEvents(
                 newState = currentState.copy(isLoading = false, error = mutation.error),
-                eventList = listOf(MainContract.Event.ShowError(mutation.error))
+                eventList = listOf(ShowError(mutation.error))
             )
 
             is MainContract.Mutation.ToggleView -> stateWithEvents(
@@ -35,7 +33,15 @@ class MainReducer : BaseReducer<MainContract.Mutation, MainContract.State, MainC
 
             is MainContract.Mutation.NavigateToDetailMutation -> stateWithEvents(
                 newState = currentState,
-                eventList = listOf(MainContract.Event.NavigateToDetail(mutation.noteId))
+                eventList = listOf(NavigateToDetail(mutation.noteId))
+            )
+
+            is MainContract.Mutation.UpdateSearchQuery -> stateWithEvents(
+                newState = currentState.copy(searchQuery = mutation.searchQuery)
+            )
+
+            is MainContract.Mutation.SearchResult -> stateWithEvents(
+                newState = currentState.copy(notes = mutation.notes, isLoading = false, error = null)
             )
         }
     }

@@ -5,6 +5,7 @@ import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -23,6 +24,8 @@ class MainProcessor(
             is MainContract.Action.NavigateToDetail -> flow {
                 emit(MainContract.Mutation.NavigateToDetailMutation(action.noteId))
             }
+
+            is MainContract.Action.SearchNote -> searchNotes(action.query)
         }
     }
 
@@ -48,6 +51,21 @@ class MainProcessor(
             }.onFailure { error ->
                 emit(MainContract.Mutation.ShowError(MainContract.Event.Error.DeleteFailure))
             }
+        }
+    }
+
+    private fun searchNotes(query: String): Flow<MainContract.Mutation> {
+        return flow {
+            emit(MainContract.Mutation.UpdateSearchQuery(searchQuery = query))
+            if (query.isNotBlank()) {
+                emit(MainContract.Mutation.ShowProgress)
+            }
+            val notes = if (query.isBlank()) {
+                repository.getAllNotes()
+            } else {
+                repository.searchNotes(query)
+            }.first()
+            emit(MainContract.Mutation.SearchResult(notes = notes, searchQuery = query))
         }
     }
 }
