@@ -1,6 +1,7 @@
-package com.note.app.ui.notedetail
+package com.note.app.ui.notedetail.viewmodel
 
 import com.note.app.base.BaseReducer
+import com.note.app.ui.notedetail.NoteDetailContract
 
 class NoteDetailReducer :
     BaseReducer<NoteDetailContract.Mutation, NoteDetailContract.State, NoteDetailContract.Event>() {

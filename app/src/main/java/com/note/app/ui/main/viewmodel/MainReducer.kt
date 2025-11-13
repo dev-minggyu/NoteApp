@@ -1,6 +1,7 @@
-package com.note.app.ui.main
+package com.note.app.ui.main.viewmodel
 
 import com.note.app.base.BaseReducer
+import com.note.app.ui.main.MainContract
 import com.note.app.ui.main.MainContract.Event.NavigateToDetail
 import com.note.app.ui.main.MainContract.Event.ShowError
 
