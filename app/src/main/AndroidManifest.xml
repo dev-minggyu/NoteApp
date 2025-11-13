@@ -17,18 +17,12 @@
         android:theme="@style/Theme.Note"
         tools:targetApi="31">
         <activity
-            android:name="com.note.app.ui.splash.InitActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Note.Splash">
+            android:name="com.note.app.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.note.app.ui.MainActivity"
-            android:exported="false" />
     </application>
 </manifest>

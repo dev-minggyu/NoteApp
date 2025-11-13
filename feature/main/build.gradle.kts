@@ -1,0 +1,22 @@
+plugins {
+    id("note.android.library")
+}
+
+android {
+    namespace = "com.note.feature.main"
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+}
+
+dependencies {
+    implementation(project(":domain"))
+    implementation(project(":feature:common"))
+}

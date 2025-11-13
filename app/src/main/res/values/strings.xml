@@ -4,24 +4,4 @@
     <!-- Bottom Navigation -->
     <string name="bottom_navi_label_main">메모</string>
     <string name="bottom_navi_label_search">검색</string>
-
-    <!-- Main -->
-    <string name="main_title">메모</string>
-    <string name="main_fail_load_note">메모 불러오기 실패</string>
-    <string name="main_fail_delete_note">메모 삭제 실패</string>
-    <string name="main_change_note_list_layout">리스트 레이아웃 변경</string>
-    <string name="main_add_note">메모 작성</string>
-    <string name="main_empty_note_list">메모가 없습니다.</string>
-    <string name="main_empty_title">제목없음</string>
-
-    <!-- Note Detail -->
-    <string name="note_detail_title_new">새로운 메모</string>
-    <string name="note_detail_title_edit">메모 수정</string>
-    <string name="note_detail_back">뒤로가기</string>
-    <string name="note_detail_save">저장</string>
-    <string name="note_detail_fail_load_note">메모 불러오기 실패</string>
-    <string name="note_detail_require_content">메모 내용을 입력해주세요.</string>
-    <string name="note_detail_fail_save_note">메모 저장 실패</string>
-    <string name="note_detail_placeholder_title">제목을 입력하세요.</string>
-    <string name="note_detail_placeholder_content">내용을 입력하세요.</string>
 </resources>
