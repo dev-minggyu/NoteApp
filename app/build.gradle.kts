@@ -25,4 +25,8 @@ dependencies {
     implementation(project(":core:repository"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
+    implementation(project(":feature:common"))
+    implementation(project(":feature:splash"))
+    implementation(project(":feature:main"))
+    implementation(project(":feature:notedetail"))
 }

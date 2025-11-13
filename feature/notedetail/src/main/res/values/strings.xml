@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Note Detail -->
+    <string name="note_detail_title_new">새로운 메모</string>
+    <string name="note_detail_title_edit">메모 수정</string>
+    <string name="note_detail_back">뒤로가기</string>
+    <string name="note_detail_save">저장</string>
+    <string name="note_detail_fail_load_note">메모 불러오기 실패</string>
+    <string name="note_detail_require_content">메모 내용을 입력해주세요.</string>
+    <string name="note_detail_fail_save_note">메모 저장 실패</string>
+    <string name="note_detail_placeholder_title">제목을 입력하세요.</string>
+    <string name="note_detail_placeholder_content">내용을 입력하세요.</string>
+</resources>
