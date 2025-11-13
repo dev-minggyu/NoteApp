@@ -7,7 +7,7 @@ sealed interface Screen {
     data object Main : Screen
 
     @Serializable
-    data object Search : Screen
+    data object Setting : Screen
 
     @Serializable
     data class NoteDetail(
