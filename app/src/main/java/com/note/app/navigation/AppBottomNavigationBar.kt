@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -26,14 +27,14 @@ sealed class BottomNavItem(
     @StringRes val labelResId: Int
 ) {
     object Notes : BottomNavItem(Screen.Main, Icons.Default.Home, R.string.bottom_navi_label_main)
-    object Search : BottomNavItem(Screen.Search, Icons.Default.Search, R.string.bottom_navi_label_search)
+    object Setting : BottomNavItem(Screen.Setting, Icons.Default.Settings, R.string.bottom_navi_label_setting)
 }
 
 @Composable
 fun AppBottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem.Notes,
-        BottomNavItem.Search,
+        BottomNavItem.Setting,
     )
 
     NavigationBar(

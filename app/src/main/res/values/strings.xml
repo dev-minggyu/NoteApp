@@ -3,5 +3,5 @@
 
     <!-- Bottom Navigation -->
     <string name="bottom_navi_label_main">메모</string>
-    <string name="bottom_navi_label_search">검색</string>
+    <string name="bottom_navi_label_setting">설정</string>
 </resources>
