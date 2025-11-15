@@ -8,6 +8,7 @@ kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
 coroutines = "1.10.2"
 serialization = "1.9.0"
+collections-immutable = "0.4.0"
 
 # AndroidX
 androidx-activity = "1.11.0"
@@ -69,6 +70,7 @@ kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-j
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlin-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collections-immutable" }
 
 # AndroidX
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }

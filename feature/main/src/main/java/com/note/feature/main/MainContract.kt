@@ -5,6 +5,8 @@ import com.note.feature.common.ui.base.contract.UiEvent
 import com.note.feature.common.ui.base.contract.UiMutation
 import com.note.feature.common.ui.base.contract.UiState
 import com.note.domain.model.Note
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 class MainContract {
     sealed interface Action : UiAction {
@@ -21,7 +23,7 @@ class MainContract {
     data class State(
         val isLoading: Boolean = false,
         val error: Event.Error? = null,
-        val notes: List<Note> = emptyList(),
+        val notes: ImmutableList<Note> = persistentListOf(),
         val isGrid: Boolean = false,
         val searchQuery: String = ""
     ) : UiState

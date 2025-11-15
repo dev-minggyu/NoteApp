@@ -11,14 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
-import com.note.feature.main.MainContract
-import com.note.feature.common.ui.theme.AppTheme
 import com.note.domain.model.Note
+import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.main.R
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun MainContent(
-    state: MainContract.State,
+    notes: ImmutableList<Note>,
+    isLoading: Boolean,
+    isGrid: Boolean,
     paddingValues: PaddingValues,
     onNoteClick: (Note) -> Unit
 ) {
@@ -28,25 +30,26 @@ fun MainContent(
             .padding(paddingValues)
     ) {
         when {
-            state.isLoading -> {
+            isLoading -> {
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center),
                     color = AppTheme.colors.primary
                 )
             }
 
-            state.notes.isEmpty() -> {
+            notes.isEmpty() -> {
                 Text(
                     text = stringResource(R.string.main_empty_note_list),
                     color = AppTheme.colors.emptyText,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    modifier = Modifier.align(Alignment.Center)  // 추가
                 )
             }
 
             else -> {
                 NoteList(
-                    notes = state.notes,
-                    isGrid = state.isGrid,
+                    notes = notes,
+                    isGrid = isGrid,
                     onNoteClick = onNoteClick
                 )
             }
