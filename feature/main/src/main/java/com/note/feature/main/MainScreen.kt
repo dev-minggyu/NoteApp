@@ -69,7 +69,9 @@ fun MainScreen(
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { paddingValues ->
         MainContent(
-            state = state,
+            notes = state.notes,
+            isLoading = state.isLoading,
+            isGrid = state.isGrid,
             paddingValues = paddingValues,
             onNoteClick = { note ->
                 viewModel.sendAction(MainContract.Action.NavigateToDetail(note.id))

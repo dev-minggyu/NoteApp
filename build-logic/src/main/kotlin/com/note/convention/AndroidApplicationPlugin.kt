@@ -54,6 +54,7 @@ fun Project.configureAndroidApplication() {
             implementation(libs.findLibrary("kotlin.coroutines.core").get())
             implementation(libs.findLibrary("kotlin.coroutines.android").get())
             implementation(libs.findLibrary("kotlin.serialization").get())
+            implementation(libs.findLibrary("kotlin.collections.immutable").get())
 
             implementation(platform(libs.findLibrary("compose.bom").get()))
             implementation(libs.findLibrary("compose.foundation").get())

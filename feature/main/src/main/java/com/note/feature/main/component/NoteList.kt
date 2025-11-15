@@ -27,11 +27,12 @@ import androidx.compose.ui.unit.sp
 import com.note.feature.main.R
 import com.note.feature.common.ui.theme.AppTheme
 import com.note.domain.model.Note
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun NoteList(
     modifier: Modifier = Modifier,
-    notes: List<Note>,
+    notes: ImmutableList<Note>,
     isGrid: Boolean,
     onNoteClick: (Note) -> Unit
 ) {
