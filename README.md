@@ -10,6 +10,7 @@
 ## 🏗️ Stack
 - [✅] **Clean Architecture + MVI Pattern**
 - [✅] **Modulazation**
+- [✅] **Gradle Version Catalog & Convention Plugin**
 - [✅] **Jetpack Compose**
 - [✅] **Coroutines & Flow**
 - [✅] **Navigation**
@@ -19,4 +20,3 @@
 - [] **Compose Glance**
 - [] **Baseline Profiles**
 - [] **Macrobenchmark**
-- [] **Gradle Version Catalog & Convention Plugin**
