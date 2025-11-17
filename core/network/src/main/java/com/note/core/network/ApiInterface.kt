@@ -12,19 +12,19 @@ interface ApiInterface {
     companion object {
         const val BASE_URL = "https://api.example.com/"
     }
-    
+
     @GET("exams")
     suspend fun getExams(): List<ExamResponse>
-    
+
     @GET("exams/{id}")
     suspend fun getExamById(@Path("id") id: String): ExamResponse
-    
+
     @POST("exams")
     suspend fun createExam(@Body exam: ExamResponse): ExamResponse
-    
+
     @PUT("exams/{id}")
     suspend fun updateExam(@Path("id") id: String, @Body exam: ExamResponse): ExamResponse
-    
+
     @DELETE("exams/{id}")
     suspend fun deleteExam(@Path("id") id: String): Boolean
 } 

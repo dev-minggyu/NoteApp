@@ -9,10 +9,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.notedetail.component.NoteDetailContent
 import com.note.feature.notedetail.component.NoteDetailTopBar
 import com.note.feature.notedetail.viewmodel.NoteDetailViewModel
-import com.note.feature.common.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

@@ -1,10 +1,10 @@
 package com.note.feature.notedetail
 
+import com.note.domain.model.Note
 import com.note.feature.common.ui.base.contract.UiAction
 import com.note.feature.common.ui.base.contract.UiEvent
 import com.note.feature.common.ui.base.contract.UiMutation
 import com.note.feature.common.ui.base.contract.UiState
-import com.note.domain.model.Note
 
 class NoteDetailContract {
     sealed interface Action : UiAction {

@@ -24,9 +24,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.note.feature.main.R
-import com.note.feature.common.ui.theme.AppTheme
 import com.note.domain.model.Note
+import com.note.feature.common.ui.theme.AppTheme
+import com.note.feature.main.R
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable

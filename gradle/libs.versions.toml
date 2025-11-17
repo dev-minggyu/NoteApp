@@ -135,7 +135,7 @@ leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", ve
 # Test
 test-junit = { module = "junit:junit", version.ref = "test-junit" }
 test-junit-extension = { module = "androidx.test.ext:junit", version.ref = "test-junit-extension" }
-test-esspresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "test-espresso-core"}
+test-esspresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "test-espresso-core" }
 
 # Etc
 android-desugar-jdk = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk" }
