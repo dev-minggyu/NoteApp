@@ -1,5 +1,8 @@
 package com.note.convention
 
+import com.note.Versions
+import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.debugImplementation
+import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.implementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -7,9 +10,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import com.note.Versions
-import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.debugImplementation
-import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.implementation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.configureAndroidApplication() {

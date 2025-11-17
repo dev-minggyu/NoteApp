@@ -1,9 +1,9 @@
 package com.note.feature.notedetail.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.note.feature.common.extension.reduceToState
 import com.note.feature.common.ui.base.BaseViewModel
 import com.note.feature.notedetail.NoteDetailContract
-import com.note.feature.common.extension.reduceToState
 import kotlinx.coroutines.flow.StateFlow
 
 class NoteDetailViewModel(

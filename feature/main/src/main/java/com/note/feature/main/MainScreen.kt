@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import com.note.feature.common.extension.HandleEvents
+import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.main.component.MainContent
 import com.note.feature.main.component.MainFab
 import com.note.feature.main.component.MainTopBar
 import com.note.feature.main.viewmodel.MainViewModel
-import com.note.feature.common.ui.theme.AppTheme
-import com.note.feature.common.extension.HandleEvents
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

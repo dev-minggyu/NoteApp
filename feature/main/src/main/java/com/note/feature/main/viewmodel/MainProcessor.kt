@@ -1,9 +1,9 @@
 package com.note.feature.main.viewmodel
 
-import com.note.feature.common.ui.base.BaseProcessor
-import com.note.feature.main.MainContract
 import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
+import com.note.feature.common.ui.base.BaseProcessor
+import com.note.feature.main.MainContract
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
