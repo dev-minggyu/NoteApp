@@ -1,4 +1,4 @@
-package com.note.core.database.exam
+package com.note.core.database.note.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -17,7 +17,7 @@ interface NoteDao {
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun getNoteById(id: Long): NoteEntity?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertNote(note: NoteEntity): Long
 
     @Update

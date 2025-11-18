@@ -1,4 +1,4 @@
-package com.note.core.database.datasource.exam
+package com.note.core.database.note.datasource
 
 import com.note.domain.model.Note
 import kotlinx.coroutines.flow.Flow
