@@ -1,6 +1,6 @@
-package com.note.core.repository.exam
+package com.note.core.repository.note
 
-import com.note.core.database.datasource.exam.NoteLocalDataSource
+import com.note.core.database.note.datasource.NoteLocalDataSource
 import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow

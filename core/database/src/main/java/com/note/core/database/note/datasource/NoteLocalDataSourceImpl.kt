@@ -1,7 +1,7 @@
-package com.note.core.database.datasource.exam
+package com.note.core.database.note.datasource
 
-import com.note.core.database.exam.NoteDao
 import com.note.core.database.model.NoteEntity
+import com.note.core.database.note.dao.NoteDao
 import com.note.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

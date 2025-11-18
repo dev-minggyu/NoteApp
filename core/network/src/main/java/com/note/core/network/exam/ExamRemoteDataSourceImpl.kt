@@ -1,4 +1,4 @@
-package com.note.core.network.datasource.exam
+package com.note.core.network.exam
 
 import com.note.core.network.ApiInterface
 import com.note.core.network.model.ExamResponse

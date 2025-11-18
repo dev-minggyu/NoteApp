@@ -1,8 +1,8 @@
 package com.note.core.network.di
 
 import com.note.core.network.ApiInterface
-import com.note.core.network.datasource.exam.ExamRemoteDataSource
-import com.note.core.network.datasource.exam.ExamRemoteDataSourceImpl
+import com.note.core.network.exam.ExamRemoteDataSource
+import com.note.core.network.exam.ExamRemoteDataSourceImpl
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
