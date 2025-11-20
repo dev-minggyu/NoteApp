@@ -8,7 +8,7 @@ import com.note.feature.common.ui.base.contract.UiState
 
 class NoteDetailContract {
     sealed interface Action : UiAction {
-        data class LoadNote(val noteId: Long?) : Action
+        data class LoadNote(val noteId: Int?) : Action
         data class UpdateTitle(val title: String) : Action
         data class UpdateContent(val content: String) : Action
         data object SaveNote : Action

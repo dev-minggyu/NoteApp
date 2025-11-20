@@ -17,7 +17,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NoteDetailScreen(
-    noteId: Long?,
+    noteId: Int?,
     onNavigateBack: () -> Unit,
     viewModel: NoteDetailViewModel = koinViewModel()
 ) {

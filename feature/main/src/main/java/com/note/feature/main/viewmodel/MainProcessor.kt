@@ -4,6 +4,7 @@ import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
 import com.note.feature.common.ui.base.BaseProcessor
 import com.note.feature.main.MainContract
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -33,7 +34,7 @@ class MainProcessor(
     private fun observeNotes(): Flow<MainContract.Mutation> {
         return repository.getAllNotes()
             .map<List<Note>, MainContract.Mutation> { notes ->
-                MainContract.Mutation.NoteLoaded(notes)
+                MainContract.Mutation.NoteLoaded(notes.toPersistentList())
             }
             .onStart {
                 emit(MainContract.Mutation.ShowProgress)
@@ -66,7 +67,7 @@ class MainProcessor(
             } else {
                 repository.searchNotes(query)
             }.first()
-            emit(MainContract.Mutation.SearchResult(notes = notes, searchQuery = query))
+            emit(MainContract.Mutation.SearchResult(notes = notes.toPersistentList(), searchQuery = query))
         }
     }
 }

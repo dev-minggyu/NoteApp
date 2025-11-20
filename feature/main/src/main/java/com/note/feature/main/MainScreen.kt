@@ -19,7 +19,7 @@ import org.koin.androidx.compose.koinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    onNavigateToDetail: (Long?) -> Unit,
+    onNavigateToDetail: (Int?) -> Unit,
     viewModel: MainViewModel = koinViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
