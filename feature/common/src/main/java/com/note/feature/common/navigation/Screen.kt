@@ -11,6 +11,6 @@ sealed interface Screen {
 
     @Serializable
     data class NoteDetail(
-        val noteId: Long? = null,
+        val noteId: Int? = null,
     ) : Screen
 }

@@ -6,7 +6,7 @@ import com.note.feature.common.navigation.Screen
 import com.note.feature.main.MainScreen
 
 fun NavGraphBuilder.mainNavGraph(
-    navigateToDetail: (Long?) -> Unit,
+    navigateToDetail: (Int?) -> Unit,
 ) {
     composable<Screen.Main> {
         MainScreen(

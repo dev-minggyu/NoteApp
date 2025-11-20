@@ -27,7 +27,7 @@ class NoteDetailProcessor(
         }
     }
 
-    private fun loadNote(noteId: Long?): Flow<NoteDetailContract.Mutation> {
+    private fun loadNote(noteId: Int?): Flow<NoteDetailContract.Mutation> {
         return flow {
             emit(NoteDetailContract.Mutation.ShowProgress)
             if (noteId == null) {
@@ -80,7 +80,10 @@ class NoteDetailProcessor(
                     title = currentTitle,
                     content = currentContent,
                     createdDate = currentNote?.createdDate ?: System.currentTimeMillis(),
-                    updatedDate = System.currentTimeMillis()
+                    updatedDate = System.currentTimeMillis(),
+                    alarmTime = null,
+                    isAlarmEnabled = false,
+                    alarmMessage = ""
                 )
 
                 if (currentNote == null) {
