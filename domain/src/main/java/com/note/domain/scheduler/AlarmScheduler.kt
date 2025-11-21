@@ -1,4 +1,4 @@
-package com.note.alarm.scheduler
+package com.note.domain.scheduler
 
 import java.time.LocalDateTime
 
