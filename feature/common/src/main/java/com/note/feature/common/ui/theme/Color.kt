@@ -14,6 +14,7 @@ data class Colors(
     val topBarBackground: Color,
     val emptyText: Color,
     val boarder: Color,
+    val disable: Color,
     val error: Color
 )
 
@@ -28,6 +29,7 @@ internal val LightColors = Colors(
     topBarBackground = Color(0xFFF5F5F5),
     emptyText = Color(0xFF9E9E9E),
     boarder = Color(0xFF000000),
+    disable = Color(0xFF9E9E9E),
     error = Color(0xFFFF0000)
 )
 
@@ -42,6 +44,7 @@ internal val DarkColors = Colors(
     topBarBackground = Color(0xFF1E1E1E),
     emptyText = Color(0xFF757575),
     boarder = Color(0xFFFFFFFF),
+    disable = Color(0xFF9E9E9E),
     error = Color(0xFFFF0000)
 )
 
