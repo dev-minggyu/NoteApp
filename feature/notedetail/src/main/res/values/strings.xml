@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Common -->
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+
     <!-- Note Detail -->
     <string name="note_detail_title_new">새로운 메모</string>
     <string name="note_detail_title_edit">메모 수정</string>
@@ -10,4 +14,35 @@
     <string name="note_detail_fail_save_note">메모 저장 실패</string>
     <string name="note_detail_placeholder_title">제목을 입력하세요.</string>
     <string name="note_detail_placeholder_content">내용을 입력하세요.</string>
+
+    <!-- Alarm -->
+    <string name="alarm_title">알람</string>
+    <string name="alarm_not_set">알람이 설정되지 않았습니다</string>
+    <string name="alarm_setting">알람 설정</string>
+    <string name="alarm_edit">알람 수정</string>
+    <string name="alarm_date">날짜</string>
+    <string name="alarm_time">시간</string>
+    <string name="alarm_message">알람 메시지</string>
+    <string name="alarm_message_placeholder">알람 메시지를 입력하세요</string>
+    <string name="alarm_delete">알람 삭제</string>
+
+    <!-- Alarm Permission -->
+    <string name="alarm_permission_title">알람 권한 필요</string>
+    <string name="alarm_permission_description">알람 기능을 사용하려면 다음 권한이 필요합니다.</string>
+    <string name="notification_permission">알림 권한</string>
+    <string name="notification_permission_description">알람이 울릴 때 알림을 표시합니다</string>
+    <string name="exact_alarm_permission">정확한 알람 권한</string>
+    <string name="exact_alarm_permission_description">정확한 시간에 알람을 울립니다</string>
+    <string name="permission_granted">허용됨</string>
+    <string name="permission_allow">권한 허용</string>
+    <string name="permission_request_again">다시 요청</string>
+    <string name="go_to_settings">설정에서 허용</string>
+    <string name="all_permissions_granted">✓ 모든 권한이 허용되었습니다</string>
+    <string name="permission_denied">권한이 거부되었습니다</string>
+    <string name="permission_required">권한이 필요합니다</string>
+
+    <!-- Date & Time Format -->
+    <string name="date_format_full">yyyy년 MM월 dd일 (E)</string>
+    <string name="time_format">HH:mm</string>
+    <string name="datetime_format">yyyy년 MM월 dd일 HH:mm</string>
 </resources>

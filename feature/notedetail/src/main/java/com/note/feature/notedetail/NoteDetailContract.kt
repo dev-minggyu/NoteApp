@@ -21,15 +21,16 @@ class NoteDetailContract {
         val content: String = "",
         val isLoading: Boolean = false,
         val isSaving: Boolean = false,
+        val isAlarmEnabled: Boolean = false,
+        val alarmTime: Long? = null,
+        val alarmMessage: String? = null,
         val error: Event.Error? = null
     ) : UiState
 
     sealed interface Event : UiEvent {
         data object NavigateBack : Event
         data object NoteSaved : Event
-
         data class ShowError(val error: Error) : Event
-
         sealed interface Error {
             data object InvalidNote : Error
             data object RequireContent : Error

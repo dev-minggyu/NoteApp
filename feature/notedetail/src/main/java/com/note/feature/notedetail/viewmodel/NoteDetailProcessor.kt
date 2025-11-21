@@ -2,13 +2,15 @@ package com.note.feature.notedetail.viewmodel
 
 import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
+import com.note.domain.scheduler.AlarmScheduler
 import com.note.feature.common.ui.base.BaseProcessor
 import com.note.feature.notedetail.NoteDetailContract
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class NoteDetailProcessor(
-    private val repository: NoteRepository
+    private val noteRepository: NoteRepository,
+    private val alarmScheduler: AlarmScheduler
 ) : BaseProcessor<NoteDetailContract.Action, NoteDetailContract.Mutation>() {
 
     private var currentNote: Note? = null
@@ -35,7 +37,7 @@ class NoteDetailProcessor(
                 return@flow
             }
             runCatching {
-                repository.getNoteById(noteId)
+                noteRepository.getNoteById(noteId)
             }.onSuccess { note ->
                 if (note != null) {
                     currentNote = note
@@ -87,9 +89,9 @@ class NoteDetailProcessor(
                 )
 
                 if (currentNote == null) {
-                    repository.insertNote(note)
+                    noteRepository.insertNote(note)
                 } else {
-                    repository.updateNote(note)
+                    noteRepository.updateNote(note)
                 }
             }.onSuccess {
                 emit(NoteDetailContract.Mutation.NoteSavedSuccess)

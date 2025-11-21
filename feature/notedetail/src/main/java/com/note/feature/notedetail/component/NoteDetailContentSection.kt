@@ -21,7 +21,7 @@ import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.notedetail.R
 
 @Composable
-fun NoteDetailContent(
+fun NoteDetailContentSection(
     modifier: Modifier = Modifier,
     isLoading: Boolean,
     title: String,
@@ -32,7 +32,6 @@ fun NoteDetailContent(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
     ) {
         if (isLoading) {
             CircularProgressIndicator(
@@ -41,9 +40,9 @@ fun NoteDetailContent(
             )
         } else {
             OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = title,
                 onValueChange = onTitleChange,
-                modifier = Modifier.fillMaxWidth(),
                 placeholder = {
                     Text(
                         text = stringResource(R.string.note_detail_placeholder_title),
@@ -64,11 +63,11 @@ fun NoteDetailContent(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = content,
-                onValueChange = onContentChange,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
+                value = content,
+                onValueChange = onContentChange,
                 placeholder = {
                     Text(
                         text = stringResource(R.string.note_detail_placeholder_content),

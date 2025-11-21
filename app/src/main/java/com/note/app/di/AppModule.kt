@@ -16,5 +16,5 @@ val appModule = module {
 
     viewModel { NoteDetailViewModel(get(), get()) }
     factory { NoteDetailReducer() }
-    factory { NoteDetailProcessor(get()) }
+    factory { NoteDetailProcessor(get(), get()) }
 }

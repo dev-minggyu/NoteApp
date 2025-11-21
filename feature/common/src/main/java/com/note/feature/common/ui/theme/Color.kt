@@ -1,5 +1,6 @@
 package com.note.feature.common.ui.theme
 
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 data class Colors(
@@ -12,9 +13,11 @@ data class Colors(
     val fabTint: Color,
     val topBarBackground: Color,
     val emptyText: Color,
+    val boarder: Color,
+    val error: Color
 )
 
-val LightColors = Colors(
+internal val LightColors = Colors(
     primary = Color(0xFF70C4A3),
     contentBackground = Color(0xFFF5F5F5),
     titleText = Color(0xFF2C2C2C),
@@ -24,9 +27,11 @@ val LightColors = Colors(
     fabTint = Color.White,
     topBarBackground = Color(0xFFF5F5F5),
     emptyText = Color(0xFF9E9E9E),
+    boarder = Color(0xFF000000),
+    error = Color(0xFFFF0000)
 )
 
-val DarkColors = Colors(
+internal val DarkColors = Colors(
     primary = Color(0xFF70C4A3),
     contentBackground = Color(0xFF121212),
     titleText = Color(0xFFE0E0E0),
@@ -36,4 +41,8 @@ val DarkColors = Colors(
     fabTint = Color(0xFF2C2C2C),
     topBarBackground = Color(0xFF1E1E1E),
     emptyText = Color(0xFF757575),
+    boarder = Color(0xFFFFFFFF),
+    error = Color(0xFFFF0000)
 )
+
+internal val LocalAppColors = compositionLocalOf { LightColors }
