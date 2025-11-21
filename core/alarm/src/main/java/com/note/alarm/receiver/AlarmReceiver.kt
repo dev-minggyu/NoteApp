@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.note.alarm.notification.AlarmNotificationService
-import com.note.alarm.scheduler.AlarmScheduler
 import com.note.alarm.scheduler.AlarmSchedulerImpl
 import com.note.domain.repository.NoteRepository
+import com.note.domain.scheduler.AlarmScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -24,13 +24,8 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
 
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
-            Intent.ACTION_BOOT_COMPLETED -> {
-                handleBootCompleted()
-            }
-
-            else -> {
-                handleAlarm(context, intent)
-            }
+            Intent.ACTION_BOOT_COMPLETED -> handleBootCompleted()
+            else -> handleAlarm(context, intent)
         }
     }
 

@@ -1,11 +1,13 @@
 package com.note.alarm.scheduler
 
+import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
+import androidx.annotation.RequiresPermission
 import com.note.alarm.receiver.AlarmReceiver
+import com.note.domain.scheduler.AlarmScheduler
 import java.time.LocalDateTime
 import java.time.ZoneId
 
@@ -17,9 +19,9 @@ class AlarmSchedulerImpl(
 
     companion object {
         const val EXTRA_NOTE_ID = "EXTRA_NOTE_ID"
-        private const val TAG = "AlarmScheduler"
     }
 
+    @RequiresPermission(Manifest.permission.SCHEDULE_EXACT_ALARM)
     override fun schedule(alarmId: Int, time: LocalDateTime, message: String) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(EXTRA_NOTE_ID, alarmId)
@@ -38,21 +40,11 @@ class AlarmSchedulerImpl(
             .toEpochMilli()
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarmManager.canScheduleExactAlarms()) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        triggerTime,
-                        pendingIntent
-                    )
-                }
-            } else {
-                alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerTime,
-                    pendingIntent
-                )
-            }
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                triggerTime,
+                pendingIntent
+            )
         } catch (e: Exception) {
             e.printStackTrace()
         }
