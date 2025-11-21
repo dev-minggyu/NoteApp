@@ -16,7 +16,7 @@
 - [✅] **Navigation**
 - [✅] **Room**
 - [✅] **Koin**
-- [] **Alarm Manager**
+- [✅] **Alarm Manager**
 - [] **Compose Glance**
 - [] **Baseline Profiles**
 - [] **Macrobenchmark**
