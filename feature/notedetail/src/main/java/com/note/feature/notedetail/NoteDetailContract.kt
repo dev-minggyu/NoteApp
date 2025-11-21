@@ -24,7 +24,7 @@ class NoteDetailContract {
         val isLoading: Boolean = false,
         val isSaving: Boolean = false,
         val isAlarmEnabled: Boolean = false,
-        val alarmTime: Long? = null,
+        val alarmTime: Long = -1L,
         val alarmMessage: String = "",
         val error: Event.Error? = null
     ) : UiState
@@ -49,7 +49,7 @@ class NoteDetailContract {
         data object NoteSavedSuccess : Mutation
         data object NavigateBackMutation : Mutation
         data class ShowError(val error: Event.Error) : Mutation
-        data class SetAlarm(val time: Long?, val message: String) : Mutation
+        data class SetAlarm(val time: Long, val message: String) : Mutation
         data class ToggleAlarm(val isEnabled: Boolean) : Mutation
     }
 }

@@ -20,7 +20,7 @@ class NoteDetailReducer :
                     note = mutation.note,
                     title = mutation.note.title,
                     content = mutation.note.content,
-                    alarmTime = mutation.note.alarmTime.takeIf { it > 0 },
+                    alarmTime = mutation.note.alarmTime,
                     alarmMessage = mutation.note.alarmMessage,
                     isAlarmEnabled = mutation.note.isAlarmEnabled,
                     isLoading = false
