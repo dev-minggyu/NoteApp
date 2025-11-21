@@ -16,9 +16,9 @@ class NoteDetailProcessor(
     private var currentNote: Note? = null
     private var currentTitle: String = ""
     private var currentContent: String = ""
-    private var currentAlarmTime: Long? = null
+    private var currentAlarmTime: Long = -1L
     private var currentAlarmEnabled: Boolean = false
-    private var currentAlarmMessage: String? = null
+    private var currentAlarmMessage: String = ""
 
     override fun process(action: NoteDetailContract.Action): Flow<NoteDetailContract.Mutation> {
         return when (action) {
@@ -113,9 +113,7 @@ class NoteDetailProcessor(
                 }
 
                 if (note.isAlarmEnabled) {
-                    note.alarmTime?.let { alarmTime ->
-                        alarmScheduler.schedule(alarmId = noteId.toInt(), time = alarmTime, message = note.alarmMessage ?: "")
-                    }
+                    alarmScheduler.schedule(alarmId = noteId.toInt(), time = note.alarmTime, message = note.alarmMessage)
                 } else {
                     alarmScheduler.cancel(alarmId = noteId.toInt())
                 }

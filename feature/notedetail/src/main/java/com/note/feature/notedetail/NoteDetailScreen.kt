@@ -11,9 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -32,10 +29,6 @@ fun NoteDetailScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
-
-    var alarmTime by remember { mutableStateOf(state.alarmTime) }
-    var alarmMessage by remember { mutableStateOf(state.alarmMessage) }
-    var isAlarmEnabled by remember { mutableStateOf(state.isAlarmEnabled) }
 
     LaunchedEffect(noteId) {
         noteId?.let {
@@ -122,7 +115,7 @@ fun NoteDetailScreen(
                     viewModel.sendAction(NoteDetailContract.Action.SetAlarm(time = time, message = message))
                 },
                 onDeleteAlarm = {
-                    viewModel.sendAction(NoteDetailContract.Action.SetAlarm(time = null, message = null))
+                    viewModel.sendAction(NoteDetailContract.Action.SetAlarm(time = -1L, message = ""))
                     viewModel.sendAction(NoteDetailContract.Action.ToggleAlarm(isEnabled = false))
                 }
             )

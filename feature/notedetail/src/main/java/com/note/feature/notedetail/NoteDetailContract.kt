@@ -13,7 +13,7 @@ class NoteDetailContract {
         data class UpdateContent(val content: String) : Action
         data object SaveNote : Action
         data object NavigateBack : Action
-        data class SetAlarm(val time: Long?, val message: String?) : Action
+        data class SetAlarm(val time: Long, val message: String) : Action
         data class ToggleAlarm(val isEnabled: Boolean) : Action
     }
 
@@ -25,7 +25,7 @@ class NoteDetailContract {
         val isSaving: Boolean = false,
         val isAlarmEnabled: Boolean = false,
         val alarmTime: Long? = null,
-        val alarmMessage: String? = null,
+        val alarmMessage: String = "",
         val error: Event.Error? = null
     ) : UiState
 
@@ -49,7 +49,7 @@ class NoteDetailContract {
         data object NoteSavedSuccess : Mutation
         data object NavigateBackMutation : Mutation
         data class ShowError(val error: Event.Error) : Mutation
-        data class SetAlarm(val time: Long?, val message: String?) : Mutation
+        data class SetAlarm(val time: Long?, val message: String) : Mutation
         data class ToggleAlarm(val isEnabled: Boolean) : Mutation
     }
 }

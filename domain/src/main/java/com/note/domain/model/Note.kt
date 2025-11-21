@@ -6,7 +6,7 @@ data class Note(
     val content: String,
     val createdDate: Long = System.currentTimeMillis(),
     val updatedDate: Long = System.currentTimeMillis(),
-    val alarmTime: Long? = null,
+    val alarmTime: Long = -1L,
     val isAlarmEnabled: Boolean = false,
-    val alarmMessage: String? = null
+    val alarmMessage: String = ""
 )

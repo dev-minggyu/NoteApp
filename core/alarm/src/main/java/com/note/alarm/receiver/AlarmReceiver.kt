@@ -53,9 +53,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
             try {
                 val enabledAlarms = noteRepository.getEnabledAlarms().firstOrNull()
                 enabledAlarms?.forEach { note ->
-                    note.alarmTime?.let { alarmTime ->
-                        alarmScheduler.schedule(note.id.toInt(), alarmTime, note.alarmMessage ?: "")
-                    }
+                    alarmScheduler.schedule(note.id.toInt(), note.alarmTime, note.alarmMessage)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
