@@ -22,8 +22,6 @@ fun Project.configureAndroidApplication() {
         apply(libs.findPlugin("compose.compiler").get().get().pluginId)
     }
 
-    //libs.findPlugin("compose.compiler").get())
-
     android {
         compileSdkVersion(Versions.COMPILE_SDK)
 
@@ -62,6 +60,7 @@ fun Project.configureAndroidApplication() {
             implementation(libs.findLibrary("compose.material.icons.core").get())
             implementation(libs.findLibrary("compose.material.icons.extended").get())
             implementation(libs.findLibrary("compose.navigation").get())
+            implementation(libs.findLibrary("compose.accompanist.permission").get())
 
             implementation(libs.findLibrary("androidx.core").get())
             implementation(libs.findLibrary("androidx.appcompat").get())
