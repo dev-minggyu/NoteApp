@@ -8,7 +8,7 @@
 - **알람**
 
 ## 🏗️ Stack
-- [✅] **Clean Architecture + MVI Pattern**
+- [✅] **Clean Architecture(excl. usecase) + MVI Pattern**
 - [✅] **Modulazation**
 - [✅] **Gradle Version Catalog & Convention Plugin**
 - [✅] **Jetpack Compose**
