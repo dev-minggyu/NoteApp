@@ -8,7 +8,7 @@ fun NavController.navigateToMain(navOptions: NavOptions? = null) {
 }
 
 fun NavController.navigateToDetail(
-    noteId: Int?,
+    noteId: Long?,
     navOptions: NavOptions? = null
 ) {
     navigate(Screen.NoteDetail(noteId = noteId), navOptions)

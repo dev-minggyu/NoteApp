@@ -1,8 +1,6 @@
 package com.note.domain.scheduler
 
-import java.time.LocalDateTime
-
 interface AlarmScheduler {
-    fun schedule(alarmId: Int, time: LocalDateTime, message: String)
+    fun schedule(alarmId: Int, time: Long, message: String)
     fun cancel(alarmId: Int)
 }

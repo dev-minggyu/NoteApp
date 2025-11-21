@@ -12,7 +12,7 @@ class MainContract {
     sealed interface Action : UiAction {
         data object ToggleListMode : Action
         data class DeleteNote(val note: Note) : Action
-        data class NavigateToDetail(val noteId: Int?) : Action
+        data class NavigateToDetail(val noteId: Long?) : Action
         data class SearchNote(val query: String) : Action
 
         sealed interface Stream : Action {
@@ -29,7 +29,7 @@ class MainContract {
     ) : UiState
 
     sealed interface Event : UiEvent {
-        data class NavigateToDetail(val noteId: Int?) : Event
+        data class NavigateToDetail(val noteId: Long?) : Event
         data class ShowError(val error: Error) : Event
 
         sealed interface Error {
@@ -45,7 +45,7 @@ class MainContract {
         data class NoteDeleted(val note: Note) : Mutation
         data class UpdateSearchQuery(val searchQuery: String) : Mutation
         data class SearchResult(val notes: ImmutableList<Note>, val searchQuery: String) : Mutation
-        data class NavigateToDetailMutation(val noteId: Int?) : Mutation
+        data class NavigateToDetailMutation(val noteId: Long?) : Mutation
         data class ShowError(val error: Event.Error) : Mutation
     }
 }

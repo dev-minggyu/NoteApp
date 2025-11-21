@@ -20,6 +20,9 @@ class NoteDetailReducer :
                     note = mutation.note,
                     title = mutation.note.title,
                     content = mutation.note.content,
+                    alarmTime = mutation.note.alarmTime,
+                    alarmMessage = mutation.note.alarmMessage,
+                    isAlarmEnabled = mutation.note.isAlarmEnabled,
                     isLoading = false
                 )
             )
@@ -53,6 +56,14 @@ class NoteDetailReducer :
             is NoteDetailContract.Mutation.NavigateBackMutation -> stateWithEvents(
                 newState = currentState,
                 eventList = listOf(NoteDetailContract.Event.NavigateBack)
+            )
+
+            is NoteDetailContract.Mutation.SetAlarm -> stateWithEvents(
+                newState = currentState.copy(alarmTime = mutation.time, alarmMessage = mutation.message)
+            )
+
+            is NoteDetailContract.Mutation.ToggleAlarm -> stateWithEvents(
+                newState = currentState.copy(isAlarmEnabled = mutation.isEnabled)
             )
         }
     }

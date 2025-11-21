@@ -16,6 +16,9 @@ class NoteDetailProcessor(
     private var currentNote: Note? = null
     private var currentTitle: String = ""
     private var currentContent: String = ""
+    private var currentAlarmTime: Long? = null
+    private var currentAlarmEnabled: Boolean = false
+    private var currentAlarmMessage: String? = null
 
     override fun process(action: NoteDetailContract.Action): Flow<NoteDetailContract.Mutation> {
         return when (action) {
@@ -26,10 +29,21 @@ class NoteDetailProcessor(
             is NoteDetailContract.Action.NavigateBack -> flow {
                 emit(NoteDetailContract.Mutation.NavigateBackMutation)
             }
+
+            is NoteDetailContract.Action.SetAlarm -> flow {
+                currentAlarmTime = action.time
+                currentAlarmMessage = action.message
+                emit(NoteDetailContract.Mutation.SetAlarm(action.time, action.message))
+            }
+
+            is NoteDetailContract.Action.ToggleAlarm -> flow {
+                currentAlarmEnabled = action.isEnabled
+                emit(NoteDetailContract.Mutation.ToggleAlarm(action.isEnabled))
+            }
         }
     }
 
-    private fun loadNote(noteId: Int?): Flow<NoteDetailContract.Mutation> {
+    private fun loadNote(noteId: Long?): Flow<NoteDetailContract.Mutation> {
         return flow {
             emit(NoteDetailContract.Mutation.ShowProgress)
             if (noteId == null) {
@@ -43,6 +57,9 @@ class NoteDetailProcessor(
                     currentNote = note
                     currentTitle = note.title
                     currentContent = note.content
+                    currentAlarmTime = note.alarmTime
+                    currentAlarmEnabled = note.isAlarmEnabled
+                    currentAlarmMessage = note.alarmMessage
                     emit(NoteDetailContract.Mutation.NoteLoaded(note))
                 } else {
                     emit(NoteDetailContract.Mutation.ShowError(NoteDetailContract.Event.Error.InvalidNote))
@@ -83,19 +100,29 @@ class NoteDetailProcessor(
                     content = currentContent,
                     createdDate = currentNote?.createdDate ?: System.currentTimeMillis(),
                     updatedDate = System.currentTimeMillis(),
-                    alarmTime = null,
-                    isAlarmEnabled = false,
-                    alarmMessage = ""
+                    alarmTime = currentAlarmTime,
+                    alarmMessage = currentAlarmMessage,
+                    isAlarmEnabled = currentAlarmEnabled
                 )
 
-                if (currentNote == null) {
+                val noteId = if (note.id == 0L) {
                     noteRepository.insertNote(note)
                 } else {
                     noteRepository.updateNote(note)
+                    note.id
+                }
+
+                if (note.isAlarmEnabled) {
+                    note.alarmTime?.let { alarmTime ->
+                        alarmScheduler.schedule(alarmId = noteId.toInt(), time = alarmTime, message = note.alarmMessage ?: "")
+                    }
+                } else {
+                    alarmScheduler.cancel(alarmId = noteId.toInt())
                 }
             }.onSuccess {
                 emit(NoteDetailContract.Mutation.NoteSavedSuccess)
-            }.onFailure { error ->
+            }.onFailure {
+                it.printStackTrace()
                 emit(NoteDetailContract.Mutation.ShowError(NoteDetailContract.Event.Error.SaveFailure))
             }
         }

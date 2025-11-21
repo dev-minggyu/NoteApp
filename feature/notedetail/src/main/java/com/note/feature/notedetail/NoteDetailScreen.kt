@@ -26,7 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NoteDetailScreen(
-    noteId: Int?,
+    noteId: Long?,
     onNavigateBack: () -> Unit,
     viewModel: NoteDetailViewModel = koinViewModel()
 ) {
@@ -113,18 +113,17 @@ fun NoteDetailScreen(
             Spacer(modifier = Modifier.height(16.dp))
             NoteAlarmSection(
                 alarmTime = state.alarmTime,
+                alarmMessage = state.alarmMessage,
                 isAlarmEnabled = state.isAlarmEnabled,
                 onToggleAlarm = {
-                    isAlarmEnabled = it
+                    viewModel.sendAction(NoteDetailContract.Action.ToggleAlarm(isEnabled = it))
                 },
                 onSetAlarm = { time, message ->
-                    alarmTime = time
-                    alarmMessage = message
+                    viewModel.sendAction(NoteDetailContract.Action.SetAlarm(time = time, message = message))
                 },
                 onDeleteAlarm = {
-                    alarmTime = -1L
-                    alarmMessage = ""
-                    isAlarmEnabled = false
+                    viewModel.sendAction(NoteDetailContract.Action.SetAlarm(time = null, message = null))
+                    viewModel.sendAction(NoteDetailContract.Action.ToggleAlarm(isEnabled = false))
                 }
             )
         }
