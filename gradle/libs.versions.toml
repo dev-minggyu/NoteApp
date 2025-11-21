@@ -27,6 +27,7 @@ material = "1.13.0"
 
 # Compose
 compose-bom = "2025.10.01"
+compose-accompanist-permission = "0.34.0"
 
 # Hilt
 hilt = "2.57.2"
@@ -98,6 +99,7 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+compose-accompanist-permission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist-permission" }
 
 # Hilt
 hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
