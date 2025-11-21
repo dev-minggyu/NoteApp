@@ -43,7 +43,7 @@ import com.note.feature.notedetail.R
 @Composable
 fun NoteAlarmSection(
     alarmTime: Long?,
-    alarmMessage: String?,
+    alarmMessage: String,
     isAlarmEnabled: Boolean,
     onToggleAlarm: (isEnabled: Boolean) -> Unit,
     onSetAlarm: (timeInMillis: Long, message: String) -> Unit,

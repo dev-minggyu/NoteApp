@@ -105,7 +105,7 @@ fun NoteDetailScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             NoteAlarmSection(
-                alarmTime = state.alarmTime,
+                alarmTime = state.alarmTime.takeIf { it > 0 },
                 alarmMessage = state.alarmMessage,
                 isAlarmEnabled = state.isAlarmEnabled,
                 onToggleAlarm = {
