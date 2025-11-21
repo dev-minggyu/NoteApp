@@ -4,15 +4,17 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.compositionLocalOf
-
-val LocalAppColors = compositionLocalOf { LightColors }
 
 object AppTheme {
     val colors: Colors
         @Composable
         @ReadOnlyComposable
         get() = LocalAppColors.current
+
+    val typo: Typo
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalTypo
 }
 
 @Composable
