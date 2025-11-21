@@ -30,7 +30,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
     }
 
     private fun handleAlarm(context: Context, intent: Intent) {
-        val noteId = intent.getIntExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1)
+        val noteId = intent.getLongExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1)
         scope.launch {
             try {
                 val note = noteRepository.getNoteById(noteId)
@@ -41,7 +41,6 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
                         title = note.title,
                         message = note.alarmMessage
                     )
-                    noteRepository.toggleAlarm(noteId, false)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -55,7 +54,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
                 val enabledAlarms = noteRepository.getEnabledAlarms().firstOrNull()
                 enabledAlarms?.forEach { note ->
                     note.alarmTime?.let { alarmTime ->
-                        alarmScheduler.schedule(note.id, alarmTime, note.alarmMessage)
+                        alarmScheduler.schedule(note.id.toInt(), alarmTime, note.alarmMessage ?: "")
                     }
                 }
             } catch (e: Exception) {

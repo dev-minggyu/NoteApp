@@ -45,6 +45,7 @@ import java.util.Locale
 @Composable
 fun AlarmSettingDialog(
     currentAlarmTime: Long?,
+    currentAlarmMessage: String?,
     onDismiss: () -> Unit,
     onConfirm: (timeInMillis: Long, message: String) -> Unit,
     onDelete: (() -> Unit)? = null
@@ -65,7 +66,7 @@ fun AlarmSettingDialog(
     var selectedDate by remember { mutableStateOf(calendar.time) }
     var selectedHour by remember { mutableIntStateOf(calendar.get(Calendar.HOUR_OF_DAY)) }
     var selectedMinute by remember { mutableIntStateOf(calendar.get(Calendar.MINUTE)) }
-    var message by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf(currentAlarmMessage ?: "") }
 
     val datePickerState = rememberDatePickerState(initialSelectedDateMillis = selectedDate.time)
     val timePickerState = rememberTimePickerState(

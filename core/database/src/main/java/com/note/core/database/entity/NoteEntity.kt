@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "notes")
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long,
     val title: String,
     val content: String,
     val createdDate: Long = System.currentTimeMillis(),
     val updatedDate: Long = System.currentTimeMillis(),
     val alarmTime: Long? = null,
     val isAlarmEnabled: Boolean = false,
-    val alarmMessage: String
+    val alarmMessage: String? = null
 )

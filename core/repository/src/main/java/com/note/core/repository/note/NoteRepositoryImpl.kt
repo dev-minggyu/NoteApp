@@ -4,7 +4,6 @@ import com.note.core.database.note.datasource.NoteLocalDataSource
 import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
-import java.time.LocalDateTime
 
 class NoteRepositoryImpl(
     private val noteLocalDataSource: NoteLocalDataSource
@@ -14,7 +13,7 @@ class NoteRepositoryImpl(
         return noteLocalDataSource.getAllNotes()
     }
 
-    override suspend fun getNoteById(noteId: Int): Note? {
+    override suspend fun getNoteById(noteId: Long): Note? {
         return noteLocalDataSource.getNoteById(noteId)
     }
 
@@ -36,18 +35,5 @@ class NoteRepositoryImpl(
 
     override fun getEnabledAlarms(): Flow<List<Note>> {
         return noteLocalDataSource.getEnabledAlarms()
-    }
-
-    override suspend fun toggleAlarm(noteId: Int, isEnabled: Boolean) {
-        noteLocalDataSource.toggleAlarm(noteId, isEnabled)
-    }
-
-    override suspend fun updateAlarm(
-        noteId: Int,
-        alarmTime: LocalDateTime?,
-        isEnabled: Boolean,
-        message: String?
-    ) {
-        noteLocalDataSource.updateAlarm(noteId, alarmTime, isEnabled, message)
     }
 }

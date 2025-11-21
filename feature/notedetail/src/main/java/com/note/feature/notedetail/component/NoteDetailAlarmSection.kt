@@ -43,6 +43,7 @@ import com.note.feature.notedetail.R
 @Composable
 fun NoteAlarmSection(
     alarmTime: Long?,
+    alarmMessage: String?,
     isAlarmEnabled: Boolean,
     onToggleAlarm: (isEnabled: Boolean) -> Unit,
     onSetAlarm: (timeInMillis: Long, message: String) -> Unit,
@@ -75,8 +76,6 @@ fun NoteAlarmSection(
 
     var showPermissionDialog by remember { mutableStateOf(false) }
     var showAlarmDialog by remember { mutableStateOf(false) }
-
-    var setAlarmTime by remember { mutableStateOf(alarmTime) }
 
     OutlinedCard(
         modifier = modifier
@@ -128,7 +127,7 @@ fun NoteAlarmSection(
                 }
             }
 
-            if (setAlarmTime != null) {
+            if (alarmTime != null) {
                 Switch(
                     checked = isAlarmEnabled,
                     onCheckedChange = { onToggleAlarm(it) }
@@ -150,15 +149,14 @@ fun NoteAlarmSection(
     if (showAlarmDialog) {
         AlarmSettingDialog(
             currentAlarmTime = alarmTime,
+            currentAlarmMessage = alarmMessage,
             onDismiss = { showAlarmDialog = false },
             onConfirm = { time, message ->
                 onSetAlarm(time, message)
-                setAlarmTime = time
                 showAlarmDialog = false
             },
             onDelete = {
                 onDeleteAlarm()
-                setAlarmTime = null
                 showAlarmDialog = false
             }
         )

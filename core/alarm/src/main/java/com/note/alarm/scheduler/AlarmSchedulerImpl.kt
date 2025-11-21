@@ -8,8 +8,6 @@ import android.content.Intent
 import androidx.annotation.RequiresPermission
 import com.note.alarm.receiver.AlarmReceiver
 import com.note.domain.scheduler.AlarmScheduler
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 class AlarmSchedulerImpl(
     private val context: Context
@@ -22,7 +20,7 @@ class AlarmSchedulerImpl(
     }
 
     @RequiresPermission(Manifest.permission.SCHEDULE_EXACT_ALARM)
-    override fun schedule(alarmId: Int, time: LocalDateTime, message: String) {
+    override fun schedule(alarmId: Int, time: Long, message: String) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(EXTRA_NOTE_ID, alarmId)
         }
@@ -34,15 +32,10 @@ class AlarmSchedulerImpl(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val triggerTime = time
-            .atZone(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-
         try {
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
-                triggerTime,
+                time,
                 pendingIntent
             )
         } catch (e: Exception) {
@@ -51,14 +44,18 @@ class AlarmSchedulerImpl(
     }
 
     override fun cancel(alarmId: Int) {
-        val intent = Intent(context, AlarmReceiver::class.java)
-        PendingIntent.getBroadcast(
-            context,
-            alarmId,
-            intent,
-            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
-        ).also {
-            alarmManager.cancel(it)
+        try {
+            val intent = Intent(context, AlarmReceiver::class.java)
+            PendingIntent.getBroadcast(
+                context,
+                alarmId,
+                intent,
+                PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+            ).also {
+                alarmManager.cancel(it)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

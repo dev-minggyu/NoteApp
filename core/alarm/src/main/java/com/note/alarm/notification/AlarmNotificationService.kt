@@ -21,7 +21,7 @@ object AlarmNotificationService {
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     fun showNotification(
         context: Context,
-        noteId: Int,
+        noteId: Long,
         title: String,
         message: String?
     ) {
@@ -34,7 +34,7 @@ object AlarmNotificationService {
 
         val pendingIntent = PendingIntent.getActivity(
             context,
-            noteId,
+            noteId.toInt(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -52,7 +52,7 @@ object AlarmNotificationService {
             .setSound(alarmSound)
             .build()
 
-        NotificationManagerCompat.from(context).notify(noteId, notification)
+        NotificationManagerCompat.from(context).notify(noteId.toInt(), notification)
     }
 
     private fun createNotificationChannel(context: Context) {

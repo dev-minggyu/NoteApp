@@ -15,7 +15,7 @@ interface NoteDao {
     fun getAllNotes(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM notes WHERE id = :id")
-    suspend fun getNoteById(id: Int): NoteEntity?
+    suspend fun getNoteById(id: Long): NoteEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: NoteEntity): Long
@@ -31,10 +31,4 @@ interface NoteDao {
 
     @Query("SELECT * FROM notes WHERE isAlarmEnabled = 1 AND alarmTime IS NOT NULL ORDER BY alarmTime ASC")
     fun getEnabledAlarms(): Flow<List<NoteEntity>>
-
-    @Query("UPDATE notes SET isAlarmEnabled = :isEnabled WHERE id = :noteId")
-    suspend fun toggleAlarm(noteId: Int, isEnabled: Boolean)
-
-    @Query("UPDATE notes SET alarmTime = :alarmTime, isAlarmEnabled = :isEnabled, alarmMessage = :message WHERE id = :noteId")
-    suspend fun updateAlarm(noteId: Int, alarmTime: Long?, isEnabled: Boolean, message: String?)
 }
