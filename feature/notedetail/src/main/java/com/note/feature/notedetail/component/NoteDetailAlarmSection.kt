@@ -19,6 +19,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -87,13 +89,7 @@ fun NoteAlarmSection(
                     showPermissionDialog = true
                 }
             },
-        colors = CardDefaults.cardColors(
-            containerColor = if (isAlarmEnabled) {
-                AppTheme.colors.primary
-            } else {
-                AppTheme.colors.contentBackground
-            }
-        )
+        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.contentBackground)
     ) {
         Row(
             modifier = Modifier
@@ -109,7 +105,8 @@ fun NoteAlarmSection(
                 Icon(
                     modifier = Modifier.size(32.dp),
                     imageVector = if (isAlarmEnabled) Icons.Default.Alarm else Icons.Default.AlarmOff,
-                    contentDescription = null
+                    contentDescription = null,
+                    tint = AppTheme.colors.titleText
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
@@ -117,12 +114,14 @@ fun NoteAlarmSection(
                 Column {
                     Text(
                         text = stringResource(R.string.alarm_title),
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        color = AppTheme.colors.subTitleText
                     )
                     Text(
                         text = alarmTime?.dateFormat(stringResource(R.string.datetime_format))
                             ?: stringResource(R.string.alarm_not_set),
                         fontSize = 12.sp,
+                        color = AppTheme.colors.subTitleText
                     )
                 }
             }
@@ -130,7 +129,13 @@ fun NoteAlarmSection(
             if (alarmTime != null) {
                 Switch(
                     checked = isAlarmEnabled,
-                    onCheckedChange = { onToggleAlarm(it) }
+                    onCheckedChange = { onToggleAlarm(it) },
+                    colors = SwitchDefaults.colors(
+                        checkedTrackColor = AppTheme.colors.toggleTint,
+                        checkedThumbColor = AppTheme.colors.primary,
+                        uncheckedTrackColor = AppTheme.colors.toggleTint,
+                        uncheckedThumbColor = Color.White
+                    )
                 )
             }
         }

@@ -19,6 +19,7 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.note.app.R
 import com.note.core.navigation.Screen
+import com.note.feature.common.ui.theme.AppTheme
 
 sealed class BottomNavItem(
     val route: Any,
@@ -37,8 +38,8 @@ fun AppBottomNavigationBar(navController: NavController) {
     )
 
     NavigationBar(
-        containerColor = Color.White,
-        contentColor = Color(0xFF70C4A3)
+        containerColor = AppTheme.colors.contentBackground,
+        contentColor = AppTheme.colors.toggleTint
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination

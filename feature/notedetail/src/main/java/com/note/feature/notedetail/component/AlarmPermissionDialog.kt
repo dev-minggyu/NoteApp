@@ -94,6 +94,7 @@ fun AlarmPermissionDialog(
     }
 
     AlertDialog(
+        containerColor = AppTheme.colors.contentBackground,
         onDismissRequest = onDismiss,
         icon = {
             Icon(
@@ -106,6 +107,7 @@ fun AlarmPermissionDialog(
         title = {
             Text(
                 text = stringResource(R.string.alarm_permission_title),
+                color = AppTheme.colors.titleText,
                 style = AppTheme.typo.headlineSmall
             )
         },
@@ -115,6 +117,7 @@ fun AlarmPermissionDialog(
             ) {
                 Text(
                     text = stringResource(R.string.alarm_permission_description),
+                    color = AppTheme.colors.titleText,
                     fontSize = 14.sp
                 )
 
@@ -165,13 +168,19 @@ fun AlarmPermissionDialog(
         confirmButton = {
             if (allPermissionsGranted) {
                 Button(onClick = onAllPermissionsGranted) {
-                    Text(stringResource(R.string.confirm))
+                    Text(
+                        text = stringResource(R.string.confirm),
+                        color = AppTheme.colors.titleText
+                    )
                 }
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text(stringResource(R.string.cancel))
+                Text(
+                    text = stringResource(R.string.cancel),
+                    color = AppTheme.colors.titleText
+                )
             }
         }
     )
@@ -213,7 +222,8 @@ private fun PermissionCard(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = title,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = AppTheme.colors.titleText
                 )
                 if (isGranted) {
                     Icon(
@@ -234,7 +244,8 @@ private fun PermissionCard(
 
             Text(
                 text = description,
-                fontSize = 12.sp
+                fontSize = 12.sp,
+                color = AppTheme.colors.titleText
             )
 
             if (onButtonClick != null) {
@@ -245,13 +256,17 @@ private fun PermissionCard(
                         containerColor = if (isGranted) AppTheme.colors.primary else AppTheme.colors.error
                     )
                 ) {
-                    Text(buttonText)
+                    Text(
+                        text = buttonText,
+                        color = AppTheme.colors.titleText
+                    )
                 }
             } else if (isGranted) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = buttonText,
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    color = AppTheme.colors.titleText
                 )
             }
         }
