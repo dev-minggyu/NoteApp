@@ -1,4 +1,4 @@
-package com.note.feature.common.navigation
+package com.note.core.navigation
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.note.alarm.notification
+package com.note.core.alarm.notification
 
 import android.Manifest
 import android.R
@@ -11,7 +11,7 @@ import android.media.RingtoneManager
 import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.net.toUri
+import com.note.core.navigation.DeepLink
 
 object AlarmNotificationService {
     private const val CHANNEL_ID = "alarm_channel"
@@ -28,7 +28,7 @@ object AlarmNotificationService {
         createNotificationChannel(context)
 
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = "note://detail/$noteId".toUri()
+            data = DeepLink.NoteDetail.uri(noteId)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 

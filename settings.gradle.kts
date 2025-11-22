@@ -21,12 +21,16 @@ dependencyResolutionManagement {
 }
 
 include(":app")
+
 include(":domain")
+
 include(":core:repository")
 include(":core:database")
 include(":core:network")
+include(":core:alarm")
+include(":core:navigation")
+
 include(":feature:main")
 include(":feature:splash")
 include(":feature:notedetail")
 include(":feature:common")
-include(":core:alarm")

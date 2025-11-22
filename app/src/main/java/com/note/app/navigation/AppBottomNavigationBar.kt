@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.note.app.R
-import com.note.feature.common.navigation.Screen
+import com.note.core.navigation.Screen
 
 sealed class BottomNavItem(
     val route: Any,

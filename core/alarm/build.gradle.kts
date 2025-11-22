@@ -3,9 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.note.alarm"
+    namespace = "com.note.core.alarm"
 }
 
 dependencies {
     implementation(project(":domain"))
+
+    implementation(project(":core:navigation"))
 }

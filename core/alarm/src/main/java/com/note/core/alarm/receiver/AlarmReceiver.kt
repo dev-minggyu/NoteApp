@@ -1,10 +1,10 @@
-package com.note.alarm.receiver
+package com.note.core.alarm.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.note.alarm.notification.AlarmNotificationService
-import com.note.alarm.scheduler.AlarmSchedulerImpl
+import com.note.core.alarm.notification.AlarmNotificationService
+import com.note.core.alarm.scheduler.AlarmSchedulerImpl
 import com.note.domain.repository.NoteRepository
 import com.note.domain.scheduler.AlarmScheduler
 import kotlinx.coroutines.CoroutineScope

@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.note.feature.common.navigation.Screen
-import com.note.feature.common.navigation.navigateToDetail
+import com.note.core.navigation.Screen
+import com.note.core.navigation.navigateToDetail
 import com.note.feature.main.navigation.mainNavGraph
 import com.note.feature.notedetail.navigation.detailNavGraph
 

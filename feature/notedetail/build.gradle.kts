@@ -18,5 +18,8 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+
+    implementation(project(":core:navigation"))
+
     implementation(project(":feature:common"))
 }
