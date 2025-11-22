@@ -35,7 +35,7 @@ internal val LightColors = Colors(
 
 internal val DarkColors = Colors(
     primary = Color(0xFF70C4A3),
-    contentBackground = Color(0xFF121212),
+    contentBackground = Color(0xFF2C2C2C),
     titleText = Color(0xFFE0E0E0),
     subTitleText = Color(0xFFB0B0B0),
     cardBackground = Color(0xFF1E1E1E),
