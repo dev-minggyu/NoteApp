@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.note.network"
+    namespace = "com.note.core.network"
 }
 
 dependencies {

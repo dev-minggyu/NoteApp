@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.note.database"
+    namespace = "com.note.core.database"
 }
 
 dependencies {

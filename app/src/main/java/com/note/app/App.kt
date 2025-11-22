@@ -1,7 +1,7 @@
 package com.note.app
 
 import android.app.Application
-import com.note.alarm.di.alarmModule
+import com.note.core.alarm.di.alarmModule
 import com.note.app.di.appModule
 import com.note.core.database.di.databaseModule
 import com.note.core.network.di.networkModule

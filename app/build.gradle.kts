@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
     implementation(project(":core:alarm"))
+    implementation(project(":core:navigation"))
 
     implementation(project(":feature:common"))
     implementation(project(":feature:splash"))

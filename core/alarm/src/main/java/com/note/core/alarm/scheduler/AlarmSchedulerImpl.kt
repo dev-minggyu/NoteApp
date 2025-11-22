@@ -1,4 +1,4 @@
-package com.note.alarm.scheduler
+package com.note.core.alarm.scheduler
 
 import android.Manifest
 import android.app.AlarmManager
@@ -6,7 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.RequiresPermission
-import com.note.alarm.receiver.AlarmReceiver
+import com.note.core.alarm.receiver.AlarmReceiver
 import com.note.domain.scheduler.AlarmScheduler
 
 class AlarmSchedulerImpl(

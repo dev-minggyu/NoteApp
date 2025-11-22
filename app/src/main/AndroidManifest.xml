@@ -21,8 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Note"
         tools:targetApi="31">
+
         <activity
             android:name="com.note.app.MainActivity"
+            android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +42,7 @@
         </activity>
 
         <receiver
-            android:name="com.note.alarm.receiver.AlarmReceiver"
+            android:name="com.note.core.alarm.receiver.AlarmReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
