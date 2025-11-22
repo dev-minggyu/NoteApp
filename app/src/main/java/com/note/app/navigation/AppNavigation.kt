@@ -1,5 +1,7 @@
 package com.note.app.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -21,9 +23,13 @@ fun AppNavigation() {
         }
     ) { paddingValues ->
         NavHost(
+            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
             navController = navController,
             startDestination = Screen.Main,
-            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None },
+            popEnterTransition = { EnterTransition.None },
+            popExitTransition = { ExitTransition.None }
         ) {
             mainNavGraph(
                 navigateToDetail = navController::navigateToDetail,
