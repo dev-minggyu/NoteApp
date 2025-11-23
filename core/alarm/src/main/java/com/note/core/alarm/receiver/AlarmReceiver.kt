@@ -3,6 +3,7 @@ package com.note.core.alarm.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import androidx.annotation.RequiresPermission
 import com.note.core.alarm.notification.AlarmNotificationService
 import com.note.core.alarm.scheduler.AlarmSchedulerImpl
 import com.note.domain.repository.NoteRepository
@@ -29,8 +30,9 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
         }
     }
 
+    @RequiresPermission(android.Manifest.permission.POST_NOTIFICATIONS)
     private fun handleAlarm(context: Context, intent: Intent) {
-        val noteId = intent.getLongExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1)
+        val noteId = intent.getIntExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1).toLong()
         scope.launch {
             try {
                 val note = noteRepository.getNoteById(noteId)
