@@ -1,5 +1,6 @@
 package com.note.core.alarm.receiver
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -23,6 +24,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
             Intent.ACTION_BOOT_COMPLETED -> handleBootCompleted()
@@ -30,7 +32,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     private fun handleAlarm(context: Context, intent: Intent) {
         val noteId = intent.getIntExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1).toLong()
         scope.launch {
