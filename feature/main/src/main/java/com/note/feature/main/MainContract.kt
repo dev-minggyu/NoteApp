@@ -16,7 +16,7 @@ class MainContract {
         data class SearchNote(val query: String) : Action
 
         sealed interface Stream : Action {
-            data object ObserveNotes : Action
+            data object ObserveNotes : Stream
         }
     }
 
