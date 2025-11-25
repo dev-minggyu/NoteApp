@@ -16,13 +16,15 @@ class AlarmSchedulerImpl(
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     companion object {
-        const val EXTRA_NOTE_ID = "EXTRA_NOTE_ID"
+        const val EXTRA_ALARM_ID = "EXTRA_ALARM_ID"
+        const val EXTRA_ALARM_TYPE = "EXTRA_ALARM_TYPE"
     }
 
     @RequiresPermission(Manifest.permission.SCHEDULE_EXACT_ALARM)
-    override fun schedule(alarmId: Int, time: Long, message: String) {
+    override fun schedule(alarmId: Int, time: Long, type: String, message: String?) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
-            putExtra(EXTRA_NOTE_ID, alarmId)
+            putExtra(EXTRA_ALARM_ID, alarmId)
+            putExtra(EXTRA_ALARM_TYPE, type)
         }
 
         val pendingIntent = PendingIntent.getBroadcast(
