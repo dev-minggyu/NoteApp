@@ -3,6 +3,7 @@ package com.note.feature.notedetail.alarm
 import android.content.Context
 import com.note.core.alarm.AlarmHandler
 import com.note.core.alarm.notification.AlarmNotificationService
+import com.note.core.navigation.DeepLink
 import com.note.domain.repository.NoteRepository
 import com.note.domain.scheduler.AlarmScheduler
 import kotlinx.coroutines.flow.firstOrNull
@@ -28,9 +29,10 @@ class NoteAlarmHandler(
             if (note != null && note.isAlarmEnabled) {
                 AlarmNotificationService.showNotification(
                     context = context,
-                    noteId = alarmId.toLong(),
+                    notificationId = alarmId,
                     title = note.title,
-                    message = note.alarmMessage
+                    message = note.alarmMessage,
+                    deepLinkUri = DeepLink.NoteDetail.uri(alarmId.toLong())
                 )
             }
         } catch (e: Exception) {
