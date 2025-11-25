@@ -8,9 +8,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.net.Uri
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.note.core.navigation.DeepLink
 
 object AlarmNotificationService {
     private const val CHANNEL_ID = "alarm_channel"
@@ -20,20 +20,21 @@ object AlarmNotificationService {
     @SuppressLint("MissingPermission")
     fun showNotification(
         context: Context,
-        noteId: Long,
+        notificationId: Int,
         title: String,
-        message: String?
+        message: String?,
+        deepLinkUri: Uri?
     ) {
         createNotificationChannel(context)
 
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = DeepLink.NoteDetail.uri(noteId)
+            data = deepLinkUri
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
         val pendingIntent = PendingIntent.getActivity(
             context,
-            noteId.toInt(),
+            notificationId,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -51,7 +52,7 @@ object AlarmNotificationService {
             .setSound(alarmSound)
             .build()
 
-        NotificationManagerCompat.from(context).notify(noteId.toInt(), notification)
+        NotificationManagerCompat.from(context).notify(notificationId, notification)
     }
 
     private fun createNotificationChannel(context: Context) {
