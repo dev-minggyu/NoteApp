@@ -2,15 +2,15 @@ package com.note.feature.notedetail.viewmodel
 
 import com.note.domain.model.Note
 import com.note.domain.repository.NoteRepository
-import com.note.domain.scheduler.AlarmScheduler
 import com.note.feature.common.ui.base.BaseProcessor
 import com.note.feature.notedetail.NoteDetailContract
+import com.note.feature.notedetail.alarm.NoteAlarmHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class NoteDetailProcessor(
     private val noteRepository: NoteRepository,
-    private val alarmScheduler: AlarmScheduler
+    private val noteAlarmHandler: NoteAlarmHandler
 ) : BaseProcessor<NoteDetailContract.Action, NoteDetailContract.Mutation>() {
 
     private var currentNote: Note? = null
@@ -113,9 +113,9 @@ class NoteDetailProcessor(
                 }
 
                 if (note.isAlarmEnabled) {
-                    alarmScheduler.schedule(alarmId = noteId.toInt(), time = note.alarmTime, message = note.alarmMessage)
+                    noteAlarmHandler.schedule(alarmId = noteId.toInt(), time = note.alarmTime, message = note.alarmMessage)
                 } else {
-                    alarmScheduler.cancel(alarmId = noteId.toInt())
+                    noteAlarmHandler.cancel(alarmId = noteId.toInt())
                 }
             }.onSuccess {
                 emit(NoteDetailContract.Mutation.NoteSavedSuccess)

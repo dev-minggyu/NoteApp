@@ -19,6 +19,7 @@ android {
 dependencies {
     implementation(project(":domain"))
 
+    implementation(project(":core:alarm"))
     implementation(project(":core:navigation"))
 
     implementation(project(":feature:common"))

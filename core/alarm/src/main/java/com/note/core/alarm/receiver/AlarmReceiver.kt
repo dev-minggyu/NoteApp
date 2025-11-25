@@ -1,30 +1,23 @@
 package com.note.core.alarm.receiver
 
-import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.annotation.RequiresPermission
-import com.note.core.alarm.notification.AlarmNotificationService
+import com.note.core.alarm.AlarmHandler
 import com.note.core.alarm.scheduler.AlarmSchedulerImpl
-import com.note.domain.repository.NoteRepository
-import com.note.domain.scheduler.AlarmScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class AlarmReceiver : BroadcastReceiver(), KoinComponent {
 
-    private val noteRepository: NoteRepository by inject()
-    private val alarmScheduler: AlarmScheduler by inject()
+    private val alarmHandlers: List<AlarmHandler> by inject()
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
             Intent.ACTION_BOOT_COMPLETED -> handleBootCompleted()
@@ -32,36 +25,20 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
         }
     }
 
-    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     private fun handleAlarm(context: Context, intent: Intent) {
-        val noteId = intent.getIntExtra(AlarmSchedulerImpl.EXTRA_NOTE_ID, -1).toLong()
-        scope.launch {
-            try {
-                val note = noteRepository.getNoteById(noteId)
-                if (note != null && note.isAlarmEnabled) {
-                    AlarmNotificationService.showNotification(
-                        context = context,
-                        noteId = noteId,
-                        title = note.title,
-                        message = note.alarmMessage
-                    )
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+        val alarmId = intent.getIntExtra(AlarmSchedulerImpl.EXTRA_ALARM_ID, -1)
+        val type = intent.getStringExtra(AlarmSchedulerImpl.EXTRA_ALARM_TYPE)
+
+        if (alarmId != -1 && type != null) {
+            scope.launch {
+                alarmHandlers.find { it.type == type }?.onAlarmFired(context, alarmId)
             }
         }
     }
 
     private fun handleBootCompleted() {
         scope.launch {
-            try {
-                val enabledAlarms = noteRepository.getEnabledAlarms().firstOrNull()
-                enabledAlarms?.forEach { note ->
-                    alarmScheduler.schedule(note.id.toInt(), note.alarmTime, note.alarmMessage)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            alarmHandlers.forEach { it.onBootCompleted() }
         }
     }
 }
