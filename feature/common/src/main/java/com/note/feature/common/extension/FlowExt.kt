@@ -5,10 +5,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.runningFold
 import kotlinx.coroutines.flow.stateIn
 
@@ -64,6 +65,7 @@ fun <State, Action, Mutation> Flow<Action>.reduceToState(
     scope: CoroutineScope,
     started: SharingStarted = SharingStarted.WhileSubscribed(5_000)
 ): StateFlow<State> {
+    val activeStreams = mutableSetOf<Action>()
 
     // 일반 Processor Action의 경우 flatMapLatest 처리한 eventFlow 생성
     val eventFlow = this
@@ -72,16 +74,13 @@ fun <State, Action, Mutation> Flow<Action>.reduceToState(
             processor(intent)
         }
 
-    // Processor의 동작 형태가 Stream인 Action의 경우 eventFlow와 별도의 streamFlow 생성
-    val streamFlow = if (streamIntents.isEmpty()) {
-        emptyFlow()
-    } else {
-        merge(
-            *streamIntents.map { intent ->
-                processor(intent)
-            }.toTypedArray()
-        )
-    }
+    // Processor의 동작 형태가 Stream인 Action의 경우 eventFlow와 별도의 streamFlow 생성 (+중복 방지)
+    val streamFlow = this
+        .filter { action -> action in streamIntents }
+        .filter { action -> activeStreams.add(action) }
+        .flatMapMerge(concurrency = Int.MAX_VALUE) { action ->
+            processor(action).onCompletion { activeStreams.remove(action) }
+        }
 
     return merge(streamFlow, eventFlow)
         .runningFold(initialState, reducer)
