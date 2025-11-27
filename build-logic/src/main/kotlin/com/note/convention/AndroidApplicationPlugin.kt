@@ -87,6 +87,7 @@ fun Project.configureAndroidApplication() {
 
             testImplementation(libs.findLibrary("test.junit").get())
             testImplementation(libs.findLibrary("test.mockk").get())
+            testImplementation(libs.findLibrary("test.turbine").get())
             testImplementation(libs.findLibrary("kotlin.coroutines.test").get())
 
             androidTestImplementation(libs.findLibrary("test.junit").get())
