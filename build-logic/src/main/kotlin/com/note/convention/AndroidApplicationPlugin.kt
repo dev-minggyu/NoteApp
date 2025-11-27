@@ -3,6 +3,7 @@ package com.note.convention
 import com.note.Versions
 import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.debugImplementation
 import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.implementation
+import gradle.kotlin.dsl.accessors._1b3a4bfcc6679b4a3e125bbd1caa7ba5.testImplementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -30,6 +31,7 @@ fun Project.configureAndroidApplication() {
             versionName = Versions.VERSION_NAME
             minSdk = Versions.MIN_SDK
             targetSdk = Versions.TARGET_SDK
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
         compileOptions {
@@ -83,9 +85,14 @@ fun Project.configureAndroidApplication() {
 
             debugImplementation(libs.findLibrary("leakcanary.android").get())
 
-            implementation(libs.findLibrary("test.junit").get())
-            implementation(libs.findLibrary("test.junit.extension").get())
-            implementation(libs.findLibrary("test.esspresso.core").get())
+            testImplementation(libs.findLibrary("test.junit").get())
+            testImplementation(libs.findLibrary("test.mockk").get())
+            testImplementation(libs.findLibrary("kotlin.coroutines.test").get())
+
+            androidTestImplementation(libs.findLibrary("test.junit").get())
+            androidTestImplementation(libs.findLibrary("test.junit.extension").get())
+            androidTestImplementation(libs.findLibrary("test.esspresso.core").get())
+            androidTestImplementation(libs.findLibrary("kotlin.coroutines.test").get())
         }
     }
 }
