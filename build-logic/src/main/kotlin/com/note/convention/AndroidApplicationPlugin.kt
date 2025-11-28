@@ -40,6 +40,12 @@ fun Project.configureAndroidApplication() {
             isCoreLibraryDesugaringEnabled = true
         }
 
+        testOptions {
+            unitTests.all {
+                it.jvmArgs("-XX:+EnableDynamicAgentLoading")
+            }
+        }
+
         tasks.withType<KotlinCompile> {
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_11)
