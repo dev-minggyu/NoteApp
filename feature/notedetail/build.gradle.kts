@@ -23,4 +23,6 @@ dependencies {
     implementation(project(":core:navigation"))
 
     implementation(project(":feature:common"))
+
+    testImplementation(project(":core:test"))
 }

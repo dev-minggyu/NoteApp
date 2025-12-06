@@ -26,7 +26,7 @@ class MainViewModelTest {
 
     @Before
     fun setUp() {
-        repository = mockk(relaxed = true)
+        repository = mockk()
         processor = MainProcessor(repository)
         reducer = MainReducer()
     }
