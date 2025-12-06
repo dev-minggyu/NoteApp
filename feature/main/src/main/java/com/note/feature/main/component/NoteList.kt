@@ -29,10 +29,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.note.domain.model.Note
 import com.note.feature.common.extension.dateFormat
 import com.note.feature.common.ui.theme.AppTheme
@@ -80,7 +78,7 @@ fun NoteListItem(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = AppTheme.colors.contentBackground
+            containerColor = AppTheme.colors.surface
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
@@ -107,9 +105,8 @@ fun NoteListItem(
 private fun NoteTitle(title: String) {
     Text(
         text = title.ifBlank { stringResource(R.string.main_empty_title) },
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Bold,
-        color = AppTheme.colors.titleText,
+        style = AppTheme.typo.titleMedium,
+        color = AppTheme.colors.textPrimary,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis
     )
@@ -119,8 +116,8 @@ private fun NoteTitle(title: String) {
 private fun NoteContent(content: String) {
     Text(
         text = content,
-        fontSize = 12.sp,
-        color = AppTheme.colors.subTitleText,
+        style = AppTheme.typo.bodySmall,
+        color = AppTheme.colors.textSecondary,
         maxLines = 4,
         overflow = TextOverflow.Ellipsis
     )
@@ -144,17 +141,17 @@ private fun NoteAlarmInfo(
         Icon(
             imageVector = if (isEnabled) Icons.Default.Notifications else Icons.Default.NotificationsOff,
             contentDescription = null,
-            tint = if (isEnabled) AppTheme.colors.primary else AppTheme.colors.disable,
+            tint = if (isEnabled) AppTheme.colors.primary else AppTheme.colors.textDisabled,
             modifier = Modifier.size(14.dp)
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = alarmText,
-            fontSize = 11.sp,
+            style = AppTheme.typo.labelSmall,
             color = if (isEnabled) {
-                AppTheme.colors.subTitleText
+                AppTheme.colors.textSecondary
             } else {
-                AppTheme.colors.disable
+                AppTheme.colors.textDisabled
             }
         )
     }

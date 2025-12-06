@@ -14,9 +14,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.notedetail.R
 
@@ -36,9 +34,8 @@ fun NoteDetailTopBar(
                 } else {
                     stringResource(R.string.note_detail_title_edit)
                 },
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = AppTheme.colors.titleText
+                style = AppTheme.typo.titleLarge,
+                color = AppTheme.colors.textPrimary
             )
         },
         navigationIcon = {
@@ -46,7 +43,7 @@ fun NoteDetailTopBar(
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = stringResource(R.string.note_detail_back),
-                    tint = AppTheme.colors.titleText
+                    tint = AppTheme.colors.textPrimary
                 )
             }
         },
@@ -71,7 +68,7 @@ fun NoteDetailTopBar(
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = AppTheme.colors.contentBackground
+            containerColor = AppTheme.colors.background
         )
     )
 }

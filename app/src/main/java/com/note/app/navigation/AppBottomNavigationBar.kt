@@ -11,7 +11,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -38,8 +37,8 @@ fun AppBottomNavigationBar(navController: NavController) {
     )
 
     NavigationBar(
-        containerColor = AppTheme.colors.contentBackground,
-        contentColor = AppTheme.colors.toggleTint
+        containerColor = AppTheme.colors.background,
+        contentColor = AppTheme.colors.iconSecondary
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
@@ -61,11 +60,11 @@ fun AppBottomNavigationBar(navController: NavController) {
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color(0xFF70C4A3),
-                    selectedTextColor = Color(0xFF70C4A3),
-                    unselectedIconColor = Color(0xFF9E9E9E),
-                    unselectedTextColor = Color(0xFF9E9E9E),
-                    indicatorColor = Color(0xFFE8F5F0)
+                    selectedIconColor = AppTheme.colors.primary,
+                    selectedTextColor = AppTheme.colors.primary,
+                    unselectedIconColor = AppTheme.colors.iconSecondary,
+                    unselectedTextColor = AppTheme.colors.iconSecondary,
+                    indicatorColor = AppTheme.colors.primaryContainer
                 )
             )
         }

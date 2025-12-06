@@ -39,7 +39,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -94,7 +94,7 @@ fun AlarmPermissionDialog(
     }
 
     AlertDialog(
-        containerColor = AppTheme.colors.contentBackground,
+        containerColor = AppTheme.colors.surface,
         onDismissRequest = onDismiss,
         icon = {
             Icon(
@@ -107,7 +107,7 @@ fun AlarmPermissionDialog(
         title = {
             Text(
                 text = stringResource(R.string.alarm_permission_title),
-                color = AppTheme.colors.titleText,
+                color = AppTheme.colors.textPrimary,
                 style = AppTheme.typo.headlineSmall
             )
         },
@@ -117,8 +117,8 @@ fun AlarmPermissionDialog(
             ) {
                 Text(
                     text = stringResource(R.string.alarm_permission_description),
-                    color = AppTheme.colors.titleText,
-                    fontSize = 14.sp
+                    color = AppTheme.colors.textPrimary,
+                    style = AppTheme.typo.bodyMedium
                 )
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && notificationPermissionState != null) {
@@ -170,7 +170,7 @@ fun AlarmPermissionDialog(
                 Button(onClick = onAllPermissionsGranted) {
                     Text(
                         text = stringResource(R.string.confirm),
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             }
@@ -179,7 +179,7 @@ fun AlarmPermissionDialog(
             TextButton(onClick = onDismiss) {
                 Text(
                     text = stringResource(R.string.cancel),
-                    color = AppTheme.colors.titleText
+                    color = AppTheme.colors.textPrimary
                 )
             }
         }
@@ -198,7 +198,7 @@ private fun PermissionCard(
     Card(
         colors = CardDefaults.cardColors(
             containerColor = if (isGranted) {
-                AppTheme.colors.contentBackground
+                AppTheme.colors.surface
             } else {
                 AppTheme.colors.error.copy(alpha = 0.3f)
             }
@@ -222,8 +222,8 @@ private fun PermissionCard(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = title,
-                    fontSize = 14.sp,
-                    color = AppTheme.colors.titleText
+                    style = AppTheme.typo.bodyMedium,
+                    color = AppTheme.colors.textPrimary
                 )
                 if (isGranted) {
                     Icon(
@@ -244,8 +244,8 @@ private fun PermissionCard(
 
             Text(
                 text = description,
-                fontSize = 12.sp,
-                color = AppTheme.colors.titleText
+                style = AppTheme.typo.bodySmall,
+                color = AppTheme.colors.textPrimary
             )
 
             if (onButtonClick != null) {
@@ -258,15 +258,15 @@ private fun PermissionCard(
                 ) {
                     Text(
                         text = buttonText,
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             } else if (isGranted) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = buttonText,
-                    fontSize = 12.sp,
-                    color = AppTheme.colors.titleText
+                    style = AppTheme.typo.bodySmall,
+                    color = AppTheme.colors.textPrimary
                 )
             }
         }

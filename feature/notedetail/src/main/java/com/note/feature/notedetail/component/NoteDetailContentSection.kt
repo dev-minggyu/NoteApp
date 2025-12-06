@@ -14,9 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.notedetail.R
 
@@ -46,17 +44,16 @@ fun NoteDetailContentSection(
                 placeholder = {
                     Text(
                         text = stringResource(R.string.note_detail_placeholder_title),
-                        color = AppTheme.colors.emptyText
+                        color = AppTheme.colors.textTertiary,
+                        style = AppTheme.typo.titleLarge
                     )
                 },
                 textStyle = LocalTextStyle.current.copy(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = AppTheme.colors.titleText
-                ),
+                    color = AppTheme.colors.textPrimary
+                ).merge(AppTheme.typo.titleLarge),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AppTheme.colors.primary,
-                    unfocusedBorderColor = AppTheme.colors.emptyText
+                    unfocusedBorderColor = AppTheme.colors.border
                 )
             )
 
@@ -71,16 +68,16 @@ fun NoteDetailContentSection(
                 placeholder = {
                     Text(
                         text = stringResource(R.string.note_detail_placeholder_content),
-                        color = AppTheme.colors.emptyText
+                        color = AppTheme.colors.textTertiary,
+                        style = AppTheme.typo.bodyLarge
                     )
                 },
                 textStyle = LocalTextStyle.current.copy(
-                    fontSize = 16.sp,
-                    color = AppTheme.colors.titleText
-                ),
+                    color = AppTheme.colors.textPrimary
+                ).merge(AppTheme.typo.bodyLarge),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AppTheme.colors.primary,
-                    unfocusedBorderColor = AppTheme.colors.emptyText
+                    unfocusedBorderColor = AppTheme.colors.border
                 )
             )
         }

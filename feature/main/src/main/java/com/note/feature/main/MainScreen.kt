@@ -70,7 +70,7 @@ fun MainScreen(
                 }
             )
         },
-        containerColor = AppTheme.colors.contentBackground,
+        containerColor = AppTheme.colors.background,
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { paddingValues ->
         MainContent(

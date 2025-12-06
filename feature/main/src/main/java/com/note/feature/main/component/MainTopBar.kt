@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ViewList
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -47,21 +49,23 @@ fun MainTopBar(
         actions = {
             IconButton(onClick = onToggleListMode) {
                 Icon(
-                    modifier = Modifier.rotate(toggleButtonDegree),
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = stringResource(R.string.main_change_note_list_layout),
-                    tint = AppTheme.colors.toggleTint,
+                    imageVector = if (isGrid) Icons.Default.ViewList else Icons.Default.GridView,
+                    contentDescription = null,
+                    tint = AppTheme.colors.iconSecondary,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .rotate(toggleButtonDegree)
                 )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = AppTheme.colors.contentBackground
+            containerColor = AppTheme.colors.background
         )
     )
 }
 
 @Composable
-private fun MainSearchBar(
+fun MainSearchBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit
 ) {

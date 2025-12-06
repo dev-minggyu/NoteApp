@@ -31,7 +31,7 @@ fun SimpleTextField(
     trailingIcon: @Composable (() -> Unit)? = null,
     singleLine: Boolean = true,
     textStyle: TextStyle = TextStyle(),
-    backgroundColor: Color = AppTheme.colors.contentBackground,
+    backgroundColor: Color = AppTheme.colors.background,
     shape: Shape = RoundedCornerShape(16.dp),
     contentPadding: PaddingValues = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
     borderWidth: Dp = 1.dp,

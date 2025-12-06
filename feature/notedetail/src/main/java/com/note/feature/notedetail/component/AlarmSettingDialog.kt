@@ -37,7 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+
 import com.note.feature.common.extension.dateFormat
 import com.note.feature.common.ui.theme.AppTheme
 import com.note.feature.notedetail.R
@@ -83,7 +83,7 @@ fun AlarmSettingDialog(
     var showTimePicker by remember { mutableStateOf(false) }
 
     AlertDialog(
-        containerColor = AppTheme.colors.contentBackground,
+        containerColor = AppTheme.colors.surface,
         onDismissRequest = onDismiss,
         title = {
             Row(
@@ -97,7 +97,7 @@ fun AlarmSettingDialog(
                     } else {
                         stringResource(R.string.alarm_setting)
                     },
-                    color = AppTheme.colors.titleText,
+                    color = AppTheme.colors.textPrimary,
                     style = AppTheme.typo.headlineSmall
                 )
 
@@ -119,7 +119,7 @@ fun AlarmSettingDialog(
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = { showDatePicker = true },
-                    colors = CardDefaults.outlinedCardColors(containerColor = AppTheme.colors.contentBackground)
+                    colors = CardDefaults.outlinedCardColors(containerColor = AppTheme.colors.surface)
                 ) {
                     Row(
                         modifier = Modifier
@@ -140,13 +140,13 @@ fun AlarmSettingDialog(
                             Column {
                                 Text(
                                     text = stringResource(R.string.alarm_date),
-                                    fontSize = 12.sp,
-                                    color = AppTheme.colors.titleText
+                                    style = AppTheme.typo.bodySmall,
+                                    color = AppTheme.colors.textPrimary
                                 )
                                 Text(
                                     text = selectedDate.dateFormat(stringResource(R.string.date_format_full)),
-                                    fontSize = 16.sp,
-                                    color = AppTheme.colors.titleText
+                                    style = AppTheme.typo.bodyLarge,
+                                    color = AppTheme.colors.textPrimary
                                 )
                             }
                         }
@@ -156,7 +156,7 @@ fun AlarmSettingDialog(
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = { showTimePicker = true },
-                    colors = CardDefaults.outlinedCardColors(containerColor = AppTheme.colors.contentBackground)
+                    colors = CardDefaults.outlinedCardColors(containerColor = AppTheme.colors.surface)
                 ) {
                     Row(
                         modifier = Modifier
@@ -177,13 +177,13 @@ fun AlarmSettingDialog(
                             Column {
                                 Text(
                                     text = stringResource(R.string.alarm_time),
-                                    fontSize = 12.sp,
-                                    color = AppTheme.colors.titleText
+                                    style = AppTheme.typo.bodySmall,
+                                    color = AppTheme.colors.textPrimary
                                 )
                                 Text(
                                     text = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute),
-                                    fontSize = 16.sp,
-                                    color = AppTheme.colors.titleText
+                                    style = AppTheme.typo.bodyLarge,
+                                    color = AppTheme.colors.textPrimary
                                 )
                             }
                         }
@@ -197,16 +197,16 @@ fun AlarmSettingDialog(
                     placeholder = {
                         Text(
                             text = stringResource(R.string.alarm_message_placeholder),
-                            color = AppTheme.colors.titleText
+                            color = AppTheme.colors.textPrimary
                         )
                     },
                     maxLines = 1,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AppTheme.colors.primary,
-                        unfocusedBorderColor = AppTheme.colors.emptyText
+                        unfocusedBorderColor = AppTheme.colors.textTertiary
                     ),
                     textStyle = LocalTextStyle.current.copy(
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 )
             }
@@ -226,7 +226,7 @@ fun AlarmSettingDialog(
             ) {
                 Text(
                     text = stringResource(R.string.confirm),
-                    color = AppTheme.colors.titleText
+                    color = AppTheme.colors.textPrimary
                 )
             }
         },
@@ -234,7 +234,7 @@ fun AlarmSettingDialog(
             TextButton(onClick = onDismiss) {
                 Text(
                     text = stringResource(R.string.cancel),
-                    color = AppTheme.colors.titleText
+                    color = AppTheme.colors.textPrimary
                 )
             }
         }
@@ -243,7 +243,7 @@ fun AlarmSettingDialog(
     if (showDatePicker) {
         DatePickerDialog(
             colors = DatePickerDefaults.colors(
-                containerColor = AppTheme.colors.contentBackground,
+                containerColor = AppTheme.colors.surface,
             ),
             onDismissRequest = { showDatePicker = false },
             confirmButton = {
@@ -257,7 +257,7 @@ fun AlarmSettingDialog(
                 ) {
                     Text(
                         text = stringResource(R.string.confirm),
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             },
@@ -265,7 +265,7 @@ fun AlarmSettingDialog(
                 TextButton(onClick = { showDatePicker = false }) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             }
@@ -276,7 +276,7 @@ fun AlarmSettingDialog(
 
     if (showTimePicker) {
         AlertDialog(
-            containerColor = AppTheme.colors.contentBackground,
+            containerColor = AppTheme.colors.surface,
             onDismissRequest = { showTimePicker = false },
             confirmButton = {
                 TextButton(
@@ -288,7 +288,7 @@ fun AlarmSettingDialog(
                 ) {
                     Text(
                         text = stringResource(R.string.confirm),
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             },
@@ -296,7 +296,7 @@ fun AlarmSettingDialog(
                 TextButton(onClick = { showTimePicker = false }) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = AppTheme.colors.titleText
+                        color = AppTheme.colors.textPrimary
                     )
                 }
             },

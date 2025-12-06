@@ -5,47 +5,50 @@ import androidx.compose.ui.graphics.Color
 
 data class Colors(
     val primary: Color,
-    val contentBackground: Color,
-    val titleText: Color,
-    val subTitleText: Color,
-    val cardBackground: Color,
-    val toggleTint: Color,
-    val fabTint: Color,
-    val topBarBackground: Color,
-    val emptyText: Color,
-    val boarder: Color,
-    val disable: Color,
-    val error: Color
+    val background: Color,
+    val surface: Color,
+    val textPrimary: Color,
+    val textSecondary: Color,
+    val textTertiary: Color,
+    val textDisabled: Color,
+    val iconPrimary: Color,
+    val iconSecondary: Color,
+    val border: Color,
+    val error: Color,
+    val success: Color,
+    val primaryContainer: Color
 )
 
 internal val LightColors = Colors(
     primary = Color(0xFF70C4A3),
-    contentBackground = Color(0xFFF5F5F5),
-    titleText = Color(0xFF2C2C2C),
-    subTitleText = Color(0xFF757575),
-    cardBackground = Color.White,
-    toggleTint = Color(0xFF9E9E9E),
-    fabTint = Color.White,
-    topBarBackground = Color(0xFFF5F5F5),
-    emptyText = Color(0xFF9E9E9E),
-    boarder = Color(0xFF000000),
-    disable = Color(0xFF9E9E9E),
-    error = Color(0xFFFF0000)
+    background = Color(0xFFF5F5F5),
+    surface = Color.White,
+    textPrimary = Color(0xFF2C2C2C),
+    textSecondary = Color(0xFF757575),
+    textTertiary = Color(0xFF9E9E9E),
+    textDisabled = Color(0xFFBDBDBD),
+    iconPrimary = Color(0xFF2C2C2C),
+    iconSecondary = Color(0xFF9E9E9E),
+    border = Color(0xFFE0E0E0),
+    error = Color(0xFFFF5252),
+    success = Color(0xFF4CAF50),
+    primaryContainer = Color(0xFFE8F5F0)
 )
 
 internal val DarkColors = Colors(
     primary = Color(0xFF70C4A3),
-    contentBackground = Color(0xFF2C2C2C),
-    titleText = Color(0xFFE0E0E0),
-    subTitleText = Color(0xFFB0B0B0),
-    cardBackground = Color(0xFF1E1E1E),
-    toggleTint = Color(0xFF757575),
-    fabTint = Color(0xFF2C2C2C),
-    topBarBackground = Color(0xFF1E1E1E),
-    emptyText = Color(0xFF757575),
-    boarder = Color(0xFFFFFFFF),
-    disable = Color(0xFF9E9E9E),
-    error = Color(0xFFFF0000)
+    background = Color(0xFF121212),
+    surface = Color(0xFF1E1E1E),
+    textPrimary = Color(0xFFE0E0E0),
+    textSecondary = Color(0xFFB0B0B0),
+    textTertiary = Color(0xFF757575),
+    textDisabled = Color(0xFF555555),
+    iconPrimary = Color(0xFFE0E0E0),
+    iconSecondary = Color(0xFF757575),
+    border = Color(0xFF333333),
+    error = Color(0xFFFF5252),
+    success = Color(0xFF4CAF50),
+    primaryContainer = Color(0xFF3A4D45)
 )
 
 internal val LocalAppColors = compositionLocalOf { LightColors }

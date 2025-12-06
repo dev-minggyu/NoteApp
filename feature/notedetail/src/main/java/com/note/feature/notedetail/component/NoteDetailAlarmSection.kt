@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -89,7 +88,7 @@ fun NoteAlarmSection(
                     showPermissionDialog = true
                 }
             },
-        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.contentBackground)
+        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surface)
     ) {
         Row(
             modifier = Modifier
@@ -106,7 +105,7 @@ fun NoteAlarmSection(
                     modifier = Modifier.size(32.dp),
                     imageVector = if (isAlarmEnabled) Icons.Default.Alarm else Icons.Default.AlarmOff,
                     contentDescription = null,
-                    tint = AppTheme.colors.titleText
+                    tint = AppTheme.colors.textPrimary
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
@@ -114,14 +113,14 @@ fun NoteAlarmSection(
                 Column {
                     Text(
                         text = stringResource(R.string.alarm_title),
-                        fontSize = 16.sp,
-                        color = AppTheme.colors.subTitleText
+                        style = AppTheme.typo.titleMedium,
+                        color = AppTheme.colors.textSecondary
                     )
                     Text(
                         text = alarmTime?.dateFormat(stringResource(R.string.datetime_format))
                             ?: stringResource(R.string.alarm_not_set),
-                        fontSize = 12.sp,
-                        color = AppTheme.colors.subTitleText
+                        style = AppTheme.typo.bodySmall,
+                        color = AppTheme.colors.textSecondary
                     )
                 }
             }
@@ -131,9 +130,9 @@ fun NoteAlarmSection(
                     checked = isAlarmEnabled,
                     onCheckedChange = { onToggleAlarm(it) },
                     colors = SwitchDefaults.colors(
-                        checkedTrackColor = AppTheme.colors.toggleTint,
+                        checkedTrackColor = AppTheme.colors.iconSecondary,
                         checkedThumbColor = AppTheme.colors.primary,
-                        uncheckedTrackColor = AppTheme.colors.toggleTint,
+                        uncheckedTrackColor = AppTheme.colors.iconSecondary,
                         uncheckedThumbColor = Color.White
                     )
                 )

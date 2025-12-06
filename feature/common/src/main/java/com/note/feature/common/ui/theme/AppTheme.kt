@@ -11,10 +11,7 @@ object AppTheme {
         @ReadOnlyComposable
         get() = LocalAppColors.current
 
-    val typo: Typo
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalTypo
+    val typo: Typo = AppTypography
 }
 
 @Composable
@@ -25,7 +22,9 @@ fun AppTheme(
     content: @Composable () -> Unit
 ) {
     val appColors = if (darkTheme) DarkColors else LightColors
-    CompositionLocalProvider(LocalAppColors provides appColors) {
+    CompositionLocalProvider(
+        LocalAppColors provides appColors
+    ) {
         content()
     }
 }

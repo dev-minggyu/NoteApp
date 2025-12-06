@@ -87,7 +87,7 @@ fun NoteDetailScreen(
                 onSaveNote = { viewModel.sendAction(NoteDetailContract.Action.SaveNote) }
             )
         },
-        containerColor = AppTheme.colors.contentBackground
+        containerColor = AppTheme.colors.background
     ) { paddingValues ->
         Column(
             modifier = Modifier
