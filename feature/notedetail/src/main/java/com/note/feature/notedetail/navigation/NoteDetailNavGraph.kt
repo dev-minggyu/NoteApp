@@ -5,13 +5,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
 import com.note.core.navigation.DeepLink
+import com.note.core.navigation.AppNavigator
 import com.note.core.navigation.Screen
 import com.note.feature.common.extension.slideInLeft
 import com.note.feature.common.extension.slideOutRight
 import com.note.feature.notedetail.NoteDetailScreen
 
 fun NavGraphBuilder.detailNavGraph(
-    popBackStack: () -> Unit,
+    navigator: AppNavigator,
 ) {
     composable<Screen.NoteDetail>(
         enterTransition = { slideInLeft(durationMillis = 500) },
@@ -25,7 +26,7 @@ fun NavGraphBuilder.detailNavGraph(
         val args = backStackEntry.toRoute<Screen.NoteDetail>()
         NoteDetailScreen(
             noteId = args.noteId,
-            onNavigateBack = popBackStack,
+            onNavigateBack = { navigator.popBackStack() },
         )
     }
 }

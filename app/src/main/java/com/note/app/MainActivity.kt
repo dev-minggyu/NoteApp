@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.note.app.navigation.AppNavigation
+import com.note.app.navigation.NoteApp
 import com.note.domain.model.AppThemeOption
 import com.note.domain.repository.SettingsRepository
 import com.note.feature.common.ui.theme.AppTheme
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
             }
 
             AppTheme(darkTheme = darkTheme) {
-                AppNavigation()
+                NoteApp()
             }
         }
     }

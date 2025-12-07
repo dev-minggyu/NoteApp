@@ -10,40 +10,35 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.note.app.R
+import com.note.core.navigation.AppNavigator
 import com.note.core.navigation.Screen
 import com.note.feature.common.ui.theme.AppTheme
 
-sealed class BottomNavItem(
-    val route: Any,
+enum class BottomNavItem(
+    val route: Screen,
     val icon: ImageVector,
-    @StringRes val labelResId: Int
+    @get:StringRes val labelResId: Int
 ) {
-    object Notes : BottomNavItem(Screen.Main, Icons.Default.Home, R.string.bottom_navi_label_main)
-    object Setting : BottomNavItem(Screen.Setting, Icons.Default.Settings, R.string.bottom_navi_label_setting)
+    NOTES(Screen.Main, Icons.Default.Home, R.string.bottom_navi_label_main),
+    SETTING(Screen.Setting, Icons.Default.Settings, R.string.bottom_navi_label_setting);
 }
 
 @Composable
-fun AppBottomNavigationBar(navController: NavController) {
-    val items = listOf(
-        BottomNavItem.Notes,
-        BottomNavItem.Setting,
-    )
-
+fun AppBottomNavigationBar(navigator: AppNavigator) {
     NavigationBar(
         containerColor = AppTheme.colors.background,
         contentColor = AppTheme.colors.iconSecondary
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val navBackStackEntry by navigator.currentBackStackEntry.collectAsState(initial = null)
         val currentDestination = navBackStackEntry?.destination
 
-        items.forEach { item ->
+        BottomNavItem.entries.forEach { item ->
             NavigationBarItem(
                 icon = {
                     Icon(
@@ -54,10 +49,7 @@ fun AppBottomNavigationBar(navController: NavController) {
                 label = { Text(stringResource(item.labelResId)) },
                 selected = currentDestination?.hasRoute(item.route::class) == true,
                 onClick = {
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.startDestinationId)
-                        launchSingleTop = true
-                    }
+                    navigator.navigateToBottomBarRoute(item.route)
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = AppTheme.colors.primary,

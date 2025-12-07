@@ -13,4 +13,12 @@ sealed interface Screen {
     data class NoteDetail(
         val noteId: Long? = null,
     ) : Screen
+
+    companion object {
+        val startDestination = Main
+        val bottomTabRoutes = listOf(
+            Main,
+            Setting
+        )
+    }
 }
