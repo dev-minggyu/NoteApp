@@ -85,7 +85,9 @@ fun Project.configureAndroidApplication() {
             implementation(libs.findLibrary("androidx.navigation.ui.ktx").get())
 
             implementation(libs.findLibrary("androidx.splashscreen").get())
+
             implementation(libs.findLibrary("androidx.preference").get())
+            implementation(libs.findLibrary("androidx.datastore.preferences").get())
 
             implementation(libs.findLibrary("google.android.material").get())
 

@@ -33,4 +33,5 @@ dependencies {
     implementation(project(":feature:splash"))
     implementation(project(":feature:main"))
     implementation(project(":feature:notedetail"))
+    implementation(project(":feature:setting"))
 }

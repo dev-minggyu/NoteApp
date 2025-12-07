@@ -13,3 +13,7 @@ fun NavController.navigateToDetail(
 ) {
     navigate(Screen.NoteDetail(noteId = noteId), navOptions)
 }
+
+fun NavController.navigateToSetting(navOptions: NavOptions? = null) {
+    navigate(Screen.Setting, navOptions)
+}

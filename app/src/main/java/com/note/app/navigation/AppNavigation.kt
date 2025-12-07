@@ -12,6 +12,7 @@ import com.note.core.navigation.Screen
 import com.note.core.navigation.navigateToDetail
 import com.note.feature.main.navigation.mainNavGraph
 import com.note.feature.notedetail.navigation.detailNavGraph
+import com.note.feature.setting.navigation.settingNavGraph
 
 @Composable
 fun AppNavigation() {
@@ -38,6 +39,8 @@ fun AppNavigation() {
             detailNavGraph(
                 popBackStack = navController::popBackStack,
             )
+
+            settingNavGraph()
         }
     }
 }

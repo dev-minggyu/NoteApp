@@ -21,6 +21,7 @@ androidx-lifecycle-extension = "2.2.0"
 androidx-splashscreen = "1.0.1"
 androidx-preference = "1.2.1"
 androidx-navigation = "2.9.5"
+androidx-datastore = "1.2.0"
 
 # Google
 material = "1.13.0"
@@ -90,6 +91,7 @@ androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.re
 androidx-preference = { module = "androidx.preference:preference", version.ref = "androidx-preference" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
 
 # Google
 google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
