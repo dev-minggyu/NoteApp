@@ -16,9 +16,6 @@ class MainViewModel(
     override val uiState: StateFlow<MainContract.State> = uiAction
         .reduceToState(
             initialState = MainContract.State(),
-            streamIntents = setOf(
-                MainContract.Action.Stream.ObserveNotes
-            ),
             processor = ::processAction,
             reducer = ::reduceMutation,
             scope = viewModelScope

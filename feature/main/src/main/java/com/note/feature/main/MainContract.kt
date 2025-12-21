@@ -15,9 +15,7 @@ class MainContract {
         data class NavigateToDetail(val noteId: Long?) : Action
         data class SearchNote(val query: String) : Action
 
-        sealed interface Stream : Action {
-            data object ObserveNotes : Stream
-        }
+        data object ObserveNotes : Action
     }
 
     data class State(

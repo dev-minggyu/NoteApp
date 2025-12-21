@@ -9,10 +9,7 @@ import com.note.feature.common.ui.base.contract.UiState
 class SettingContract {
     sealed interface Action : UiAction {
         data class SetTheme(val option: AppThemeOption) : Action
-
-        sealed interface Stream : Action {
-            data object LoadTheme : Stream
-        }
+        data object LoadTheme : Action
     }
 
     data class State(

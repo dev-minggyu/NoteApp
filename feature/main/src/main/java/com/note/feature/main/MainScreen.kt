@@ -27,7 +27,7 @@ fun MainScreen(
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        viewModel.sendAction(MainContract.Action.Stream.ObserveNotes)
+        viewModel.sendAction(MainContract.Action.ObserveNotes)
     }
 
     HandleEvents(viewModel.uiEvent) { event ->

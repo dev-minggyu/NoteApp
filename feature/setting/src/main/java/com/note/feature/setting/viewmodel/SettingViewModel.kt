@@ -17,9 +17,6 @@ class SettingViewModel(
     override val uiState: StateFlow<SettingContract.State> = uiAction
         .reduceToState(
             initialState = SettingContract.State(),
-            streamIntents = setOf(
-                SettingContract.Action.Stream.LoadTheme
-            ),
             processor = ::processAction,
             reducer = ::reduceMutation,
             scope = viewModelScope
